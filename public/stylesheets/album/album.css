@@ -1,0 +1,21 @@
+#gallery {
+    float: left;
+}
+
+.tool {
+    margin: 300px 0 0 50px;
+    float: left;
+}
+
+#inc {
+    color: red;
+    font-size: 28px;
+}
+
+.shares {
+    margin: 15px 0;
+}
+
+.share {
+    float: left
+}

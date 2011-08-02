@@ -1,0 +1,25 @@
+<%= content_for :head do %>
+    <%= javascript_include_tag 'galleria/galleria-1.2.4.min' %>
+    <%= javascript_include_tag 'galleria/themes/classic/galleria.classic.min' %>
+    <%= javascript_include_tag 'album' %>
+
+    <%= stylesheet_link_tag 'album/album' %>
+<% end %>
+
+<div class="wrapper">
+  <div id="gallery">
+    <% 1.upto(15) do |i| %>
+        <%= image_tag "cos/test-#{i}.jpg" %>
+    <% end %>
+  </div>
+
+  <div class="tool">
+    <%= link_to "+1", 'javascript:void(0)', :id => 'inc' %>
+    <ul class="shares">
+       <li id="sina" class="share"></li>
+    </ul>
+  </div>
+</div>
+
+
+

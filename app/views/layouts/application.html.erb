@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Icosplay</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <title>Icosplay, 快来cosplay吧</title>
   <%= csrf_meta_tag %>
+  <%= javascript_include_tag 'jquery-1.6.2' %>
+  <%= javascript_include_tag 'application' %>
+
+  <%= stylesheet_link_tag 'application' %>
+
+  <%= yield :head %>
 </head>
 <body>
 
+<%= render 'share/header' %>
+
 <%= yield %>
+
+<%= render 'share/footer' %>
 
 </body>
 </html>

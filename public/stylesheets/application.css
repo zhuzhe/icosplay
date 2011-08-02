@@ -1,0 +1,41 @@
+html {
+    color: #111111;
+}
+
+body {
+    font: 12px Tahoma, Geneva, sans-serif;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul {
+    list-style: none;
+}
+
+div {
+    display: block;
+}
+
+body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, blockquote {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    width: 950px;
+    height: 100px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    width: 950px;
+    margin: 0 auto;
+}
+
+.footer {
+    width: 950px;
+    height: 50px;
+    margin: 0 auto;
+}

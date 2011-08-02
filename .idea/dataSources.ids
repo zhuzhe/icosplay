@@ -1,0 +1,29 @@
+<?xml version="1.0"?><component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Rails icosplay: development" product="" version="" jdbc-version="" driver-version="" uuid="222f1c86-4ca8-49b9-94e0-0bf2aeb240f9">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/icosplay_development</jdbc-url>
+    <libraries>
+      <library>
+        <url>jar://$USER_HOME$/.RubyMine31/config/jdbc-drivers/mysql-connector-java-5.1.15-bin.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails icosplay: test" product="" version="" jdbc-version="" driver-version="" uuid="8d8d895b-9dc5-4460-9a1c-5069a5743d86">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/icosplay_test</jdbc-url>
+    <libraries>
+      <library>
+        <url>jar://$USER_HOME$/.RubyMine31/config/jdbc-drivers/mysql-connector-java-5.1.15-bin.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+  <data-source source="LOCAL" name="Rails icosplay: production" product="" version="" jdbc-version="" driver-version="" uuid="6be18137-7dfe-40b5-a047-19125c6433b0">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql://127.0.0.1/icosplay_production</jdbc-url>
+    <libraries>
+      <library>
+        <url>jar://$USER_HOME$/.RubyMine31/config/jdbc-drivers/mysql-connector-java-5.1.15-bin.jar!/</url>
+      </library>
+    </libraries>
+  </data-source>
+</component>

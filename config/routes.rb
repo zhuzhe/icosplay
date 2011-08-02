@@ -1,4 +1,17 @@
 Icosplay::Application.routes.draw do
+
+  resources :albums
+
+  resources :communities
+
+  resources :users
+
+  resources :tags
+
+  root :to => "photos#index"
+
+  resources :photos
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
