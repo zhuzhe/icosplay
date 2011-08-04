@@ -1,17 +1,51 @@
 Icosplay::Application.routes.draw do
 
-  resources :albums
+  resources :comments
 
-  resources :communities
+  resources :members
+
+  resources :albums do
+    member do
+      get 'me'
+    end
+
+    resources :photos  do
+      collection do
+        post 'upload'
+      end
+      member do
+        get 'next'
+      end
+    end
+  end
+
+  resources :communities do
+    collection do
+        get 'choice'
+    end
+  end
 
   resources :users
 
   resources :tags
 
-  root :to => "photos#index"
+  root :to => "welcome#index"
 
-  resources :photos
+  resources :photos do
+    member do
+      post 'inc'
+    end
+  end
 
+  resource :session
+
+  match 'login' => 'sessions#new'
+  match 'logout' => 'sessions#destroy'
+
+  match 'profile' => 'users#show'
+  match 'register' => 'users#new'
+
+  match 'me_community' => 'communities#me'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

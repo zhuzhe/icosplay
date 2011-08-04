@@ -10,18 +10,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110802065558) do
+ActiveRecord::Schema.define(:version => 20110803095758) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.integer  "level"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "albums_photos", :force => true do |t|
     t.integer  "album_id"
     t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "photo_id"
+    t.integer  "user_id"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -33,8 +42,25 @@ ActiveRecord::Schema.define(:version => 20110802065558) do
     t.datetime "updated_at"
   end
 
+  create_table "communities_users", :force => true do |t|
+    t.integer  "community_id"
+    t.integer  "user_id"
+    t.integer  "level"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photos", :force => true do |t|
     t.string   "uri"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "album_id"
+    t.integer  "count"
+  end
+
+  create_table "points", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "photo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,6 +78,8 @@ ActiveRecord::Schema.define(:version => 20110802065558) do
     t.string   "pwd"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "community_id"
+    t.integer  "level"
   end
 
 end

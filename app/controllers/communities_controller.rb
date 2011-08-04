@@ -1,12 +1,15 @@
 class CommunitiesController < ApplicationController
   # GET /communities
   # GET /communities.xml
+
+  before_filter :require_login, :only => [:new, :create, :update, :edit]
+
   def index
     @communities = Community.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @communities }
+      format.xml { render :xml => @communities }
     end
   end
 
@@ -17,7 +20,7 @@ class CommunitiesController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @community }
+      format.xml { render :xml => @community }
     end
   end
 
@@ -28,7 +31,7 @@ class CommunitiesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @community }
+      format.xml { render :xml => @community }
     end
   end
 
@@ -40,17 +43,21 @@ class CommunitiesController < ApplicationController
   # POST /communities
   # POST /communities.xml
   def create
-    @community = Community.new(params[:community])
-
-    respond_to do |format|
-      if @community.save
-        format.html { redirect_to(@community, :notice => 'Community was successfully created.') }
-        format.xml  { render :xml => @community, :status => :created, :location => @community }
+    if login?
+      @community = Community.new(params[:community])
+      @user = current_user
+      if @user.community.nil?
+        if @community.save
+          @user.update_attributes({:community_id => @community.id, :level => User::FOUNDER})
+          redirect_to @community
+        else
+          render :action => "new"
+        end
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @community.errors, :status => :unprocessable_entity }
+          redirect_to @user
       end
     end
+
   end
 
   # PUT /communities/1
@@ -61,10 +68,10 @@ class CommunitiesController < ApplicationController
     respond_to do |format|
       if @community.update_attributes(params[:community])
         format.html { redirect_to(@community, :notice => 'Community was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @community.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @community.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -72,12 +79,20 @@ class CommunitiesController < ApplicationController
   # DELETE /communities/1
   # DELETE /communities/1.xml
   def destroy
-    @community = Community.find(params[:id])
-    @community.destroy
+#    @community = Community.find(params[:id])
+#    @community.destroy
+#
+#    respond_to do |format|
+#      format.html { redirect_to(communities_url) }
+#      format.xml  { head :ok }
+#    end
+  end
 
-    respond_to do |format|
-      format.html { redirect_to(communities_url) }
-      format.xml  { head :ok }
-    end
+  def choice
+
+  end
+
+  def me
+    @community = current_user.community
   end
 end

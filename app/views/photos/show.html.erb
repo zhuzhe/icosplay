@@ -1,10 +1,64 @@
-<p id="notice"><%= notice %></p>
+<%= content_for :head do %>
+    <%= stylesheet_link_tag 'photo/show' %>
+    <%= javascript_include_tag 'photo' %>
+<% end %>
+<div class="wrapper">
+  <%= hidden_field_tag :photo_id, @photo.id %>
+  <div class="photo">
+    <%= link_to next_album_photo_path(@photo.album, @photo) do %>
+        <%= image_tag @photo.uri %>
+    <% end %>
 
-<p>
-  <b>Uri:</b>
-  <%= @photo.uri %>
-</p>
+  </div>
+  <div class="nav">
+    <div class="visit_master">
+      <%= link_to '> 拜访主人吧', @photo.album.user %>
+    </div>
 
+    <ul class="tags">
+      <li>标签：</li>
+      <li class="tag"><%= link_to '御姐' %></li>
+      <li class="tag"><%= link_to '御姐' %></li>
+      <li class="tag"><%= link_to '御姐' %></li>
+      <li class="tag"><%= link_to '御姐' %></li>
+      <li class="tag"><%= link_to '御姐' %></li>
+      <li class="tag"><%= link_to '御姐' %></li>
+    </ul>
+    <div class="tool">
+      <% if  %>
+      <%= link_to '+1', inc_photo_path(@photo), :id => 'inc'  %>
+    </div>
+  </div>
+  <ul class="comments">
+    <li class="comment">
+      <div class="avatar">
+        <%= link_to '' do %>
+            <%= image_tag 'cos/test-1.jpg' %>
+        <% end %>
+      </div>
+      <div class="content">
+        <div class="username">
+          <%= link_to '老虎的人' %>
+        </div>
+        <div class="talk">
+          很漂亮！！！！！
+        </div>
+      </div>
 
-<%= link_to 'Edit', edit_photo_path(@photo) %> |
-<%= link_to 'Back', photos_path %>
+    </li>
+  </ul>
+
+  <div class="new_comment">
+
+    <%= form_for Comment.new do |f| %>
+        <%= f.hidden_field :photo_id, :value => @photo.id%>
+        <div class="inputarea">
+          <%= f.text_area :content, :cols => '', :rows => '' %>
+        </div>
+        <div class="submit_comment">
+          <%= f.submit '加上去' %>
+        </div>
+    <% end %>
+
+  </div>
+</div>

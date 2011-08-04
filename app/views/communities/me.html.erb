@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <div class="comunity">
+    <%= @community.name %>
+  </div>
+
+  <ul class="members">
+    <li class="member">
+      <%= link_to 'coco' %>
+    </li>
+
+    <% @community.users.each do |u| %>
+        <% if u.id == session[:user_id] %>
+            <%= link_to u.name, profile_path %>
+        <% else %>
+            <%= link_to u.name, u %>
+        <% end %>
+    <% end %>
+  </ul>
+</div>

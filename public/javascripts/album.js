@@ -10,7 +10,8 @@ $(function() {
 
         extend: function(options) {
             this.bind('image', function(e) {
-                Album.share($(e.imageTarget).attr('src'));
+//                Album.share($(e.imageTarget).attr('src'));
+
             });
         }
     });
@@ -18,7 +19,11 @@ $(function() {
     gallery = Galleria.get(0);
 
     $inc.click(function() {
-        $(this).css('color', 'silver');
+        var $this = $(this);
+        $.post('/photos/' + $(gallery.getActiveImage()).attr('id') + '/inc', {}, function(){
+            $this.css('color', 'silver');
+        });
+
         return false;
     });
 

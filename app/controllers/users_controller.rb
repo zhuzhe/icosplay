@@ -13,8 +13,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find(params[:id])
-
+    if login?
+      @user = User.find(session[:user_id])
+    else
+      @user = User.find(params[:id])
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @user }
@@ -41,16 +44,12 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-
-    respond_to do |format|
       if @user.save
-        format.html { redirect_to(@user, :notice => 'User was successfully created.') }
-        format.xml  { render :xml => @user, :status => :created, :location => @user }
+        session[:user_id] = @user.id
+        redirect_to profile_path
       else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        redirect_to register_path
       end
-    end
   end
 
   # PUT /users/1
@@ -60,7 +59,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
+        format.html { redirect_to(profile_path(:id => @user.id), :notice => 'User was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

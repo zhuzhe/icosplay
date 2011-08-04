@@ -1,0 +1,29 @@
+<%= content_for :head do  %>
+    <%= stylesheet_link_tag 'user/login' %>
+<% end %>
+
+<div class="wrapper">
+  <h2>登陆Icosplay</h2>
+  <div class="login">
+    <%= form_tag session_path do %>
+      <div class="field">
+        <%= label_tag :email, '邮箱' %>
+        <%= text_field_tag :email %>
+
+      </div>
+      <div class="field">
+        <%= label_tag :pwd, '密码' %>
+        <%= password_field_tag :pwd %>
+      </div>
+      <div class="action">
+        <%= submit_tag '快来吧' %>
+      </div>
+
+  <% end %>
+  </div>
+
+  <div class="right">
+    还没有Icosplay的帐号么？<%= link_to '立即注册',register_path %>
+  </div>
+
+</div>

@@ -1,21 +1,4 @@
-<%= form_for(@photo) do |f| %>
-  <% if @photo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
-
-      <ul>
-      <% @photo.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :uri %><br />
-    <%= f.text_field :uri %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= form_tag(upload_album_photos_path, :multipart => true) do %>
+  <%= file_field_tag 'photo' %>
+  <%= submit_tag '上传' %>
 <% end %>

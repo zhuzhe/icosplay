@@ -1,6 +1,35 @@
-<h1>Editing user</h1>
+<div class="wrapper">
+  <%= form_for(@user) do |f| %>
+      <div class="field">
+        <div class="field">
+          <%= f.label :email, "邮箱" %>
+          <br/>
+          <%= f.text_field :email %>
+        </div>
+        <%= f.label :name, '昵称' %>
+        <br/>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :sex, "性别" %>
+        <br/>
+        <%= f.select :sex, [["男", 0], ["女", 1], ["伪娘", 2]] %>
+      </div>
 
-<%= render 'form' %>
+      <div class="field">
+        <%= f.label :pwd, "密码" %>
+        <br/>
+        <%= f.password_field :pwd %>
+      </div>
+      <div class="field">
+        <%= f.label :pwd_confirmation, "重复密码" %>
+        <br/>
+        <%= f.password_field :pwd_confirmation %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+  <% end %>
+</div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+

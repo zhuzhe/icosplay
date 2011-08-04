@@ -1,15 +1,16 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper">
+  <div class="comunity">
+    <%= @community.name %>
+    <%=	 link_to '加入', new_member_path %>
+  </div>
 
-<p>
-  <b>Name:</b>
-  <%= @community.name %>
-</p>
+  <ul class="members">
+    <li class="member">
+      <%= link_to 'coco' %>
+    </li>
 
-<p>
-  <b>Description:</b>
-  <%= @community.description %>
-</p>
-
-
-<%= link_to 'Edit', edit_community_path(@community) %> |
-<%= link_to 'Back', communities_path %>
+    <% @community.users.each do |u| %>
+       <%= link_to u.name, u %>
+    <% end %>
+  </ul>
+</div>

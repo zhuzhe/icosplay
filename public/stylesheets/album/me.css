@@ -1,0 +1,14 @@
+.photos {
+    margin-top: 50px;
+}
+
+.photo {
+    float: left;
+    margin: 10px;
+}
+
+.photo img{
+    width: 120px;
+    height: 150px;
+}
+

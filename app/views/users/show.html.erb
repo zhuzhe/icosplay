@@ -1,25 +1,13 @@
-<p id="notice"><%= notice %></p>
+<div class="wrapper">
+  <div class="personal">
+    <% if @user.community %>
+    <%= link_to '我的社团', me_community_path %>
+        <% else %>
+    <%= link_to '我的社团', choice_communities_path %>
+        <% end %>
+  </div>
 
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Sex:</b>
-  <%= @user.sex %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-<p>
-  <b>Pwd:</b>
-  <%= @user.pwd %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <div class="me">
+    <%= link_to 'Me cosplay', me_album_path(@user.album) %>
+  </div>
+</div>

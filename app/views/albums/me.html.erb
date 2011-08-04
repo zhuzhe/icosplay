@@ -1,0 +1,15 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag 'album/me' %>
+<% end %>
+<div class="wrapper">
+  <%= link_to '上传你的cosplay', new_album_photo_path(@album) %>
+  <ul class="photos">
+    <% @photos.each do |p| %>
+        <li class="photo">
+          <%= link_to p do %>
+              <%= image_tag p.uri %>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>
