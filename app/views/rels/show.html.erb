@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Master:</b>
+  <%= @rel.master_id %>
+</p>
+
+<p>
+  <b>Follower:</b>
+  <%= @rel.follower_id %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @rel.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_rel_path(@rel) %> |
+<%= link_to 'Back', rels_path %>

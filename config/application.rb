@@ -1,10 +1,11 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
+require File.expand_path('../../lib/tasks/cosplay_spider.rb', __FILE__)
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
+
 
 module Icosplay
   class Application < Rails::Application

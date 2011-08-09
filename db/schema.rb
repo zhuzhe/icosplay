@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110803095758) do
+ActiveRecord::Schema.define(:version => 20110809085446) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(:version => 20110803095758) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "web_url"
   end
 
   create_table "albums_photos", :force => true do |t|
@@ -25,6 +26,13 @@ ActiveRecord::Schema.define(:version => 20110803095758) do
     t.integer  "photo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "avatars", :force => true do |t|
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "comments", :force => true do |t|
@@ -50,17 +58,34 @@ ActiveRecord::Schema.define(:version => 20110803095758) do
     t.datetime "updated_at"
   end
 
+  create_table "fans", :force => true do |t|
+    t.integer  "master_id"
+    t.integer  "fan_id"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "photos", :force => true do |t|
     t.string   "uri"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "album_id"
     t.integer  "count"
+    t.string   "web_url"
   end
 
   create_table "points", :force => true do |t|
     t.integer  "user_id"
     t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rels", :force => true do |t|
+    t.integer  "master_id"
+    t.integer  "follower_id"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -80,6 +105,7 @@ ActiveRecord::Schema.define(:version => 20110803095758) do
     t.datetime "updated_at"
     t.integer  "community_id"
     t.integer  "level"
+    t.integer  "avatar_id"
   end
 
 end

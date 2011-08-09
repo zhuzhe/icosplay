@@ -8,8 +8,8 @@
 
 <div class="wrapper">
   <div id="gallery">
-    <% 1.upto(15) do |i| %>
-        <%= image_tag "cos/test-#{i}.jpg" %>
+    <% @album.photos.each do |photo| %>
+        <%= image_tag photo.web_url %>
     <% end %>
   </div>
 

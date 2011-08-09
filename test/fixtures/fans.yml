@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  master_id: 1
+  fan_id: 1
+  status: 1
+
+two:
+  master_id: 1
+  fan_id: 1
+  status: 1

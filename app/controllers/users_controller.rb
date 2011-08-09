@@ -79,4 +79,8 @@ class UsersController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+  def hot
+    @hot_users = User.where("level >= ?", 5)
+  end
 end

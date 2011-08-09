@@ -1,5 +1,11 @@
 Icosplay::Application.routes.draw do
 
+  resources :avatars
+
+  resources :rels
+
+  resources :fans
+
   resources :comments
 
   resources :members
@@ -25,7 +31,11 @@ Icosplay::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get 'hot'
+    end
+  end
 
   resources :tags
 
@@ -34,6 +44,10 @@ Icosplay::Application.routes.draw do
   resources :photos do
     member do
       post 'inc'
+    end
+
+    collection do
+      get 'top'
     end
   end
 

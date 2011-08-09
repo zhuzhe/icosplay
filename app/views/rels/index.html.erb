@@ -1,0 +1,27 @@
+<h1>Listing rels</h1>
+
+<table>
+  <tr>
+    <th>Master</th>
+    <th>Follower</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rels.each do |rel| %>
+  <tr>
+    <td><%= rel.master_id %></td>
+    <td><%= rel.follower_id %></td>
+    <td><%= rel.status %></td>
+    <td><%= link_to 'Show', rel %></td>
+    <td><%= link_to 'Edit', edit_rel_path(rel) %></td>
+    <td><%= link_to 'Destroy', rel, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Rel', new_rel_path %>

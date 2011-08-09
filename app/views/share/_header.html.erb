@@ -1,1 +1,29 @@
-<div class="header"></div>
+<div class="header">
+  <h1>
+    <%= link_to 'Icosplay', root_path %>
+  </h1>
+
+  <div class="nav">
+    <ul>
+      <li><%= link_to 'Cos Show' %> </li>
+      <li><%= link_to 'Coser' %> </li>
+    </ul>
+  </div>
+
+  <div class="person">
+    <ul>
+      <% if @current_user.nil? %>
+          <li>
+            <%= link_to '请登陆' %>
+          </li>
+      <% else %>
+          <li>
+            <%= link_to @current_user.name, @current_user %>
+          </li>
+          <li>
+            <%= link_to '退出', logout_path %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

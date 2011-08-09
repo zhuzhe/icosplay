@@ -1,0 +1,27 @@
+<h1>Listing fans</h1>
+
+<table>
+  <tr>
+    <th>Master</th>
+    <th>Fan</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fans.each do |fan| %>
+  <tr>
+    <td><%= fan.master_id %></td>
+    <td><%= fan.fan_id %></td>
+    <td><%= fan.status %></td>
+    <td><%= link_to 'Show', fan %></td>
+    <td><%= link_to 'Edit', edit_fan_path(fan) %></td>
+    <td><%= link_to 'Destroy', fan, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fan', new_fan_path %>
