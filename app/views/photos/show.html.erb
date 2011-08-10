@@ -6,29 +6,26 @@
   <%= hidden_field_tag :photo_id, @photo.id %>
   <div class="photo">
     <%= link_to next_album_photo_path(@photo.album, @photo) do %>
-        <%= image_tag @photo.uri %>
+        <%= image_tag @photo.web_url %>
     <% end %>
 
   </div>
-  <div class="nav">
+  <div class="photo_nav">
     <div class="visit_master">
       <%= link_to '> 拜访主人吧', @photo.album.user %>
     </div>
 
     <ul class="tags">
       <li>标签：</li>
-      <li class="tag"><%= link_to '御姐' %></li>
-      <li class="tag"><%= link_to '御姐' %></li>
-      <li class="tag"><%= link_to '御姐' %></li>
-      <li class="tag"><%= link_to '御姐' %></li>
-      <li class="tag"><%= link_to '御姐' %></li>
-      <li class="tag"><%= link_to '御姐' %></li>
+      <% @photo.tags.each do |tag| %>
+          <li class="tag"><%= link_to tag.name, search_tag_photos_path(:tag_name => tag.name) %></li>
+      <% end %>
     </ul>
     <div class="tool">
-      <% if  %>
-      <%= link_to '+1', inc_photo_path(@photo), :id => 'inc'  %>
+      <%= link_to '+1', inc_photo_path(@photo), :id => 'inc' %>
     </div>
   </div>
+  <h3>我来说两句 ：</h3>
   <ul class="comments">
     <li class="comment">
       <div class="avatar">
@@ -51,7 +48,7 @@
   <div class="new_comment">
 
     <%= form_for Comment.new do |f| %>
-        <%= f.hidden_field :photo_id, :value => @photo.id%>
+        <%= f.hidden_field :photo_id, :value => @photo.id %>
         <div class="inputarea">
           <%= f.text_area :content, :cols => '', :rows => '' %>
         </div>

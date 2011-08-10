@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110809085446) do
+ActiveRecord::Schema.define(:version => 20110810093151) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(:version => 20110809085446) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "cities", :force => true do |t|
+    t.string  "name"
+    t.integer "level"
   end
 
   create_table "comments", :force => true do |t|
@@ -75,6 +80,11 @@ ActiveRecord::Schema.define(:version => 20110809085446) do
     t.string   "web_url"
   end
 
+  create_table "photos_tags", :id => false, :force => true do |t|
+    t.integer "photo_id", :default => 0
+    t.integer "tag_id",   :default => 0
+  end
+
   create_table "points", :force => true do |t|
     t.integer  "user_id"
     t.integer  "photo_id"
@@ -94,6 +104,7 @@ ActiveRecord::Schema.define(:version => 20110809085446) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "level",      :default => 0
   end
 
   create_table "users", :force => true do |t|
@@ -106,6 +117,13 @@ ActiveRecord::Schema.define(:version => 20110809085446) do
     t.integer  "community_id"
     t.integer  "level"
     t.integer  "avatar_id"
+    t.date     "birthday"
+    t.integer  "city_id"
+  end
+
+  create_table "users_tags", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
   end
 
 end

@@ -1,0 +1,66 @@
+.user {
+    float: left;
+    width: 100%;
+    margin: 10px;
+}
+
+.user .avatar {
+    width: 150px;
+    height: 180px;
+}
+
+.user img {
+    width: 100%;
+    height: 100%;
+}
+
+.user div{
+    margin: 10px;
+    width: 500px;
+    float: left;
+    font-size: 18px;
+}
+
+.user .simple_info {
+    margin-top: 10px;
+}
+
+.person_nav {
+    float: left;
+    width: 100%;
+}
+
+.me {
+    margin: 10px;
+    float: left;
+    width: 550px;
+}
+
+.me img{
+    width: 120px;
+    height: 150px;
+}
+
+.me ul {
+    margin: 10px;
+}
+.me li {
+    float: left;
+    margin: 5px;
+}
+
+
+.me_tags {
+    margin: 10px;
+    width: 100%;
+    float: left;
+}
+
+.me_tags ul {
+    margin: 10px;
+}
+
+.me_tags li {
+    margin: 3px;
+    float: left;
+}

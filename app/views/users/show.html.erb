@@ -1,13 +1,53 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag 'user/show' %>
+<% end %>
 <div class="wrapper">
-  <div class="personal">
-    <% if @user.community %>
-    <%= link_to '我的社团', me_community_path %>
-        <% else %>
-    <%= link_to '我的社团', choice_communities_path %>
-        <% end %>
+  <div class="user">
+    <div class="avatar"><%= image_tag @user.avatar.url %></div>
+    <div class="simple_info">
+    </div>
+    <div>
+      <%= h "昵称 ：  #{@user.name}" %>
+    </div>
+    <div>
+      <%= h "性别 ：  #{@user.sex_text}" %>
+    </div>
+    <div><%= h "年龄 ：   #{@user.age}" %></div>
+    <div><%= h "城市 ：  " %> <%= link_to @user.city.name %>    </div>
+
   </div>
 
+  <div class="me_tags">
+      <h3><%= h "我的标签 ： " %></h3>
+      <ul>
+        <% @user.tags.each do |tag| %>
+            <li>
+              <%= link_to tag.name, search_tag_users_path(:tag_name => tag.name) %>
+            </li>
+      <% end %>
+      </ul>
+
+    </div>
+
+  <!--<div class="person_nav">-->
+    <!--<% if @user.community %>-->
+        <!--<%= link_to '> 我的Cos社', me_community_path %>-->
+    <!--<% else %>-->
+        <!--<%= link_to '我的Cos社', choice_communities_path %>-->
+    <!--<% end %>-->
+  <!--</div>-->
+
   <div class="me">
-    <%= link_to 'Me cosplay', me_album_path(@user.album) %>
+    <h3><%= link_to '> Me cosplay', me_album_path(@user.album) %> </h3>
+    <ul>
+      <% @user.album.photos.each_with_index do |photo, index| %>
+        <% break if index > 6 %>
+        <li>
+          <%= link_to photo do %>
+            <%= image_tag photo.web_url %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

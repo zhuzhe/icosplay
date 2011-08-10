@@ -8,3 +8,15 @@ end
 task :crawl_photos => :environment do
   Ta1717.new.crawl_photos
 end
+
+task :fix_album_name => :environment do
+   Ta1717.new.fix_album_name
+end
+
+task :create_tag_by_album_name => :environment do
+  Ta1717.new.create_tag_by_album_name
+end
+
+task :tag_photo_by_album_name => :environment do
+  Ta1717.new.tag_photo_by_album_name
+end

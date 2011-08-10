@@ -83,4 +83,14 @@ class UsersController < ApplicationController
   def hot
     @hot_users = User.where("level >= ?", 5)
   end
+
+  def search_tag
+    @users = nil
+    @tag = Tag.where("name like ?", "%#{params[:tag_name]}%").limit(1).first
+    if @tag.nil?
+      @users = []
+    else
+      @users = @tag.users
+    end
+  end
 end

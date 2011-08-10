@@ -34,6 +34,7 @@ Icosplay::Application.routes.draw do
   resources :users do
     collection do
       get 'hot'
+      get 'search_tag'
     end
   end
 
@@ -48,6 +49,7 @@ Icosplay::Application.routes.draw do
 
     collection do
       get 'top'
+      get 'search_tag'
     end
   end
 

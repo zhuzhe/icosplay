@@ -66,4 +66,36 @@ class Ta1717
 
     end
   end
+
+  def fix_album_name
+    Album.find_each do |album|
+      album.name = album.name.gsub(/COSPLAY|COPSLAY/, '')
+      album.save
+    end
+  end
+
+  def create_tag_by_album_name
+    Album.find_each do |album|
+      album.name.match(/《(.*)》/)
+      tag_name = $1
+      next if tag_name.nil?
+      tag = Tag.find_by_name(tag_name)
+      if tag.nil?
+        tag = Tag.create(:name => tag_name)
+      end
+      puts tag.name
+    end
+  end
+
+  def tag_photo_by_album_name
+    Photo.find_each do |photo|
+      photo.album.name.match(/《(.*)》/)
+      tag_name = $1
+      next if tag_name.nil?
+      tag = Tag.find_by_name(tag_name)
+      next if tag.nil?
+      photo.tags << tag
+      puts tag.name
+    end
+  end
 end

@@ -113,4 +113,15 @@ class PhotosController < ApplicationController
       render :text => 'success'
     end
   end
+
+  def search_tag
+    @photos = nil
+    @tag = Tag.where("name like ?", "%#{params[:tag_name]}%").limit(1).first
+    if @tag.nil?
+      @photos = []
+    else
+      @photos = @tag.photos
+    end
+
+  end
 end

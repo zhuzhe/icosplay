@@ -11,9 +11,9 @@ admin = User.new(:name => 'admin', :pwd => 'admin', :email => 'zhuzheiswho@sina.
 
 admin.save if admin.nil?
 
-1.upto(50) do
-  test_hot_users = User.create(:name => '粒沙', :pwd => 'test', :email => 'example@example.com', :sex => 1, :level => 5)
-end
+#1.upto(50) do
+#  test_hot_users = User.create(:name => '粒沙', :pwd => 'test', :email => 'example@example.com', :sex => 1, :level => 5)
+#end
 
 DEFAULT_AVATAR_URL = '/images/avatars/default.jpg'
 
@@ -21,6 +21,10 @@ User.all.each do |u|
   if u.avatar.nil?
     u.avatar = Avatar.create(:url => DEFAULT_AVATAR_URL)
     u.save
+  end
+
+  if u.tags.blank?
+    u.tag_ids = [442, 443, 444, 445]
   end
   u.save
 end
