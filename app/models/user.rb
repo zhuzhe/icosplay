@@ -9,10 +9,12 @@ class User < ActiveRecord::Base
   belongs_to :community
   belongs_to :city
 
-  has_many :rels, :class_name => 'Rel', :foreign_key => 'master_id'
-  has_many :followers, :class_name => 'User', :through => :rels
-  has_many :masters, :class_name => 'User', :through => :rels
+  has_many :follower_rels, :class_name => 'Rel', :foreign_key => 'master_id'
+  has_many :master_rels, :class_name => 'Rel', :foreign_key => 'follower_id'
+  has_many :followers, :class_name => 'User', :through => :follower_rels
+  has_many :masters, :class_name => 'User', :through => :master_rels
   has_and_belongs_to_many :tags, :join_table => 'users_tags'
+  has_and_belongs_to_many :favorite_photos, :class_name => "Photo", :join_table => 'favorite_photos'
 
 
   FOUNDER = 1

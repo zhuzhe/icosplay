@@ -122,6 +122,20 @@ class PhotosController < ApplicationController
     else
       @photos = @tag.photos
     end
+  end
 
+  def favorite
+    @photo = Photo.find(params[:id])
+    if current_user.favorite_photos.exists?(@photo.id)
+      render :json => FAIL_JSON
+    else
+      current_user.favorite_photos << @photo
+      render :json => SUCCESS_JSON
+    end
+  end
+
+  def favorited
+    @user = User.find(params[:user_id])
+    @photos = @user.favorite_photos
   end
 end

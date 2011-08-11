@@ -12,6 +12,18 @@
   <component name="GemRequirementsHolder" version="3">
     <requirement>
       <requirement>
+        <dependency name="cucumber-rails" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
+        <dependency name="database_cleaner" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
+      </requirement>
+      <source from="Gemfile" />
+    </requirement>
+    <requirement>
+      <requirement>
         <dependency name="mysql" version="0" bound="GREATER_OR_EQUAL" git="false" path="false" doRequire="true" />
       </requirement>
       <source from="Gemfile" />

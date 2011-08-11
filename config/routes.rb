@@ -35,6 +35,19 @@ Icosplay::Application.routes.draw do
     collection do
       get 'hot'
       get 'search_tag'
+      get 'masters'
+      get 'followers'
+    end
+
+    member do
+      get 'favorite'
+      get 'unfavorite'
+    end
+
+    resources :photos do
+      collection do
+        get 'favorited'
+      end
     end
   end
 
@@ -45,6 +58,7 @@ Icosplay::Application.routes.draw do
   resources :photos do
     member do
       post 'inc'
+      get 'favorite'
     end
 
     collection do

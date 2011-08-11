@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110810093151) do
+ActiveRecord::Schema.define(:version => 20110811093343) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,11 @@ ActiveRecord::Schema.define(:version => 20110810093151) do
     t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "favorite_photos", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "photo_id"
   end
 
   create_table "photos", :force => true do |t|

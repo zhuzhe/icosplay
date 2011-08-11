@@ -1,0 +1,24 @@
+<%= content_for :head do %>
+    <%= javascript_include_tag 'galleria/galleria-1.2.4.min' %>
+    <%= javascript_include_tag 'galleria/themes/classic/galleria.classic.min' %>
+    <%= javascript_include_tag 'album' %>
+
+    <%= stylesheet_link_tag 'album/album' %>
+<% end %>
+
+<div class="wrapper">
+  <div id="gallery">
+    <% @photos.each do |photo| %>
+        <%= image_tag photo.web_url %>
+    <% end %>
+  </div>
+
+  <div class="tool">
+    <ul class="shares">
+       <li id="sina" class="share"></li>
+    </ul>
+  </div>
+</div>
+
+
+

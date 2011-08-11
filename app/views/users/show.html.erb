@@ -1,7 +1,9 @@
 <%= content_for :head do %>
     <%= stylesheet_link_tag 'user/show' %>
+    <%= javascript_include_tag 'users/show' %>
 <% end %>
 <div class="wrapper">
+  <div class="main">
   <div class="user">
     <div class="avatar"><%= image_tag @user.avatar.url %></div>
     <div class="simple_info">
@@ -17,37 +19,66 @@
 
   </div>
 
-  <div class="me_tags">
-      <h3><%= h "我的标签 ： " %></h3>
-      <ul>
-        <% @user.tags.each do |tag| %>
-            <li>
-              <%= link_to tag.name, search_tag_users_path(:tag_name => tag.name) %>
-            </li>
-      <% end %>
-      </ul>
+  <div class="tool">
+    <% if login? && current_user.masters.exists?(@user.id) %>
+        <%= link_to '取消关注', "javascript:void(0)", :id => 'unfavorite', :user_id => @user.id %>
+        <%= link_to '关注', "javascript:void(0)", :id => 'favorite', :user_id => @user.id, :style => 'display: none' %>
+    <% else %>
+        <%= link_to '取消关注', "javascript:void(0)", :id => 'unfavorite', :user_id => @user.id, :style => 'display: none' %>
+        <%= link_to '关注', "javascript:void(0)", :id => 'favorite', :user_id => @user.id %>
+    <% end %>
+  </div>
 
-    </div>
+  <div class="me_tags">
+    <h3><%= h "我的标签 ： " %></h3>
+    <ul>
+      <% @user.tags.each do |tag| %>
+          <li>
+            <%= link_to tag.name, search_tag_users_path(:tag_name => tag.name) %>
+          </li>
+      <% end %>
+    </ul>
+
+  </div>
 
   <!--<div class="person_nav">-->
-    <!--<% if @user.community %>-->
-        <!--<%= link_to '> 我的Cos社', me_community_path %>-->
-    <!--<% else %>-->
-        <!--<%= link_to '我的Cos社', choice_communities_path %>-->
-    <!--<% end %>-->
+  <!--
+  <% if @user.community %>-->
+      <!--<%= link_to '> 我的Cos社', me_community_path %>-->
+      <!--
+  <% else %>-->
+      <!--<%= link_to '我的Cos社', choice_communities_path %>-->
+      <!--
+  <% end %>-->
   <!--</div>-->
 
   <div class="me">
     <h3><%= link_to '> Me cosplay', me_album_path(@user.album) %> </h3>
     <ul>
       <% @user.album.photos.each_with_index do |photo, index| %>
-        <% break if index > 6 %>
-        <li>
-          <%= link_to photo do %>
-            <%= image_tag photo.web_url %>
-          <% end %>
-        </li>
+          <% break if index > 6 %>
+          <li>
+            <%= link_to photo do %>
+                <%= image_tag photo.web_url %>
+            <% end %>
+          </li>
       <% end %>
     </ul>
   </div>
+</div>
+
+<div class="right">
+  <ul>
+    <li>
+      <%= link_to  "> 关注", masters_users_path %>
+    </li>
+    <li>
+      <%= link_to  "> 粉丝", followers_users_path %>
+    </li>
+    <li>
+      <%= link_to "> 收藏", favorited_user_photos_path(@user) %>
+    </li>
+  </ul>
+
+</div>
 </div>

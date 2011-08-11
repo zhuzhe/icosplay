@@ -1,26 +1,25 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
+
+#  before_filter :require_login, :only => [:favorite, :unfavorite]
+
   def index
     @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @users }
+      format.xml { render :xml => @users }
     end
   end
 
   # GET /users/1
   # GET /users/1.xml
   def show
-    if login?
-      @user = User.find(session[:user_id])
-    else
-      @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @user }
+      format.xml { render :xml => @user }
     end
   end
 
@@ -31,7 +30,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @user }
+      format.xml { render :xml => @user }
     end
   end
 
@@ -44,12 +43,12 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
-      if @user.save
-        session[:user_id] = @user.id
-        redirect_to profile_path
-      else
-        redirect_to register_path
-      end
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to profile_path
+    else
+      redirect_to register_path
+    end
   end
 
   # PUT /users/1
@@ -60,10 +59,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to(profile_path(:id => @user.id), :notice => 'User was successfully updated.') }
-        format.xml  { head :ok }
+        format.xml { head :ok }
       else
         format.html { render :action => "edit" }
-        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -76,7 +75,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 
@@ -92,5 +91,33 @@ class UsersController < ApplicationController
     else
       @users = @tag.users
     end
+  end
+
+  def favorite
+    @favorited_user = User.find(params[:id])
+    if current_user.masters.exists?(@favorited_user.id)
+      render :json => FAIL_JSON
+    else
+      current_user.masters << @favorited_user
+      render :json => SUCCESS_JSON
+    end
+  end
+
+  def unfavorite
+    @un_favorite_user = User.find(params[:id])
+    unless current_user.masters.exists?(@un_favorite_user.id)
+      render :json => FAIL_JSON
+    else
+      current_user.masters.delete(@un_favorite_user)
+      render :json => SUCCESS_JSON
+    end
+  end
+
+  def masters
+    @masters = current_user.masters
+  end
+
+  def followers
+    @followers = current_user.followers
   end
 end
