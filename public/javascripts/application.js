@@ -7,6 +7,10 @@ var Icosplay = {
 
         unfavorite_user_path : function(user_id) {
             return "/users/" + user_id + "/unfavorite";
+        },
+
+        favorite_photo_path : function(photo_id) {
+            return '/photos/' + photo_id + '/favorite';
         }
     },
 
@@ -21,6 +25,13 @@ var Icosplay = {
         var self = this;
         $.get(self.path.unfavorite_user_path(user_id), function(){
               callback();
+        }, 'json');
+    },
+
+    favorite_photo : function(photo_id, callback) {
+        var self = this;
+        $.get(self.path.favorite_photo_path(photo_id), function(){
+            callback();
         }, 'json');
     }
 };

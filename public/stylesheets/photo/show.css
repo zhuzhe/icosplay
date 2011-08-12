@@ -1,11 +1,16 @@
+.main {
+    width: 650px;
+    float: left;
+    border-right: 1px dashed silver;
+}
+
 .photo {
    float: left;
    margin-bottom: 50px;
-   width: 60%;
-   border-right: 1px dashed silver;
+   width: 70%;
 }
 
-.photo_nav {
+.right {
     float: left;
     font-size: 24px;
     margin: 100px 0 0 50px;
@@ -90,6 +95,7 @@ textarea {
 }
 
 .tool {
+    margin-top: 50px;
     width: 200px;
     float: left;
 }

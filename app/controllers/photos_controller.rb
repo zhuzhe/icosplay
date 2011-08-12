@@ -1,6 +1,9 @@
 class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
+
+  before_filter :require_login, :only => [:favorite, :new, :upload]
+
   def index
     @photos = Photo.all
 
@@ -25,7 +28,8 @@ class PhotosController < ApplicationController
   # GET /photos/new.xml
   def new
     @photo = Photo.new
-
+    @user = current_user
+    @pop_tags = Tag.limit(10)
     respond_to do |format|
       format.html # new.html.erb
       format.xml { render :xml => @photo }
@@ -82,25 +86,23 @@ class PhotosController < ApplicationController
   end
 
   def upload
-    unless params[:album_id]
-      redirect_to new_album_photo_path(params[:album_id])
-    else
-      uploaded_io = params[:photo]
-      file_name = Time.now.to_s + '.' + uploaded_io.original_filename.split('.').last
-      path = Rails.root.join('public', 'uploads', file_name)
-      File.open(path, 'w') do |file|
-        file.write(uploaded_io.read)
-        @photo = Photo.create(:album_id => params[:album_id], :uri => '/uploads/' + file_name)
-      end
-      redirect_to me_album_path(params[:album_id])
-    end
 
+      uploaded_io = params[:photo]
+      file_suffix = uploaded_io.original_filename.split('.').last
+      @photo = Photo.create(:album_id => current_user.album.id)
+      @photo.web_url = @photo.uri = @photo.id2relative_path + '.' + file_suffix
+      @photo.save
+
+      File.open(@photo.id2path + '.' + file_suffix, 'w') do |file|
+        file.write(uploaded_io.read)
+      end
+      redirect_to photo_path(@photo)
   end
 
   def next
-    @next_photo  = Photo.where("album_id = ? And id > ?", params[:album_id], params[:id]).limit(1).first
+    @next_photo = Photo.where("album_id = ? And id > ?", params[:album_id], params[:id]).limit(1).first
     if @next_photo.nil?
-        @next_photo = Photo.where(:album_id => params[:album_id]).limit(1).first
+      @next_photo = Photo.where(:album_id => params[:album_id]).limit(1).first
     end
 
     redirect_to photo_path(@next_photo)
@@ -127,10 +129,15 @@ class PhotosController < ApplicationController
   def favorite
     @photo = Photo.find(params[:id])
     if current_user.favorite_photos.exists?(@photo.id)
-      render :json => FAIL_JSON
+      respond_to do |format|
+        format.json { render :json => FAIL_JSON }
+      end
     else
       current_user.favorite_photos << @photo
       render :json => SUCCESS_JSON
+#      respond_to do |format|
+#        format.json {render :json => SUCCESS_JSON}
+#      end
     end
   end
 

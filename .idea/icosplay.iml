@@ -74,6 +74,20 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] activerecord (v3.0.5, /usr/local/lib/ruby/gems/1.8/gems/activerecord-3.0.5)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] mysql (v2.8.1, /usr/local/lib/ruby/gems/1.8/gems/mysql-2.8.1)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] nokogiri (v1.5.0, /usr/local/lib/ruby/gems/1.8/gems/nokogiri-1.5.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] database_cleaner (v0.6.7, /usr/local/lib/ruby/gems/1.8/gems/database_cleaner-0.6.7)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] cucumber-rails (v1.0.2, /usr/local/lib/ruby/gems/1.8/gems/cucumber-rails-1.0.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] xpath (v0.1.4, /usr/local/lib/ruby/gems/1.8/gems/xpath-0.1.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] selenium-webdriver (v0.2.2, /usr/local/lib/ruby/gems/1.8/gems/selenium-webdriver-0.2.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] json_pure (v1.5.3, /usr/local/lib/ruby/gems/1.8/gems/json_pure-1.5.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] ffi (v1.0.9, /usr/local/lib/ruby/gems/1.8/gems/ffi-1.0.9)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] childprocess (v0.2.0, /usr/local/lib/ruby/gems/1.8/gems/childprocess-0.2.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] json (v1.5.3, /usr/local/lib/ruby/gems/1.8/gems/json-1.5.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] cucumber (v1.0.2, /usr/local/lib/ruby/gems/1.8/gems/cucumber-1.0.2)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] rubyzip (v0.9.4, /usr/local/lib/ruby/gems/1.8/gems/rubyzip-0.9.4)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] capybara (v1.0.0, /usr/local/lib/ruby/gems/1.8/gems/capybara-1.0.0)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] term-ansicolor (v1.0.6, /usr/local/lib/ruby/gems/1.8/gems/term-ansicolor-1.0.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] gherkin (v2.4.6, /usr/local/lib/ruby/gems/1.8/gems/gherkin-2.4.6)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] diff-lcs (v1.1.2, /usr/local/lib/ruby/gems/1.8/gems/diff-lcs-1.1.2)" level="application" />
   </component>
 </module>
 

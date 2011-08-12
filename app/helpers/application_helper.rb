@@ -1,4 +1,7 @@
 module ApplicationHelper
+
+  JAVASCRIPT = 'javascript:void(0)'
+
   def login?
     true if session[:user_id]
   end

@@ -1,5 +1,45 @@
-
+<%= content_for :head do %>
+    <%= stylesheet_link_tag 'photo/new' %>
+<% end %>
 
 <div class="wrapper">
-  <%= render 'form' %>
+
+  <div>
+    <%= form_tag(upload_photos_path, :multipart => true) do %>
+            <ul>
+              <li>照片：<%= file_field_tag 'photo', :readonly => "readonly" %></li>
+              <li>标签(多个标签用空格分隔):</li>
+              <li><%= text_field_tag 'tag', :readonly => "readonly" %></li>
+              <li>
+                <dl>
+                  <dt>我的标签：</dt>
+                  <dd>
+                    <% @user.tags.each do |tag| %>
+                        <span class="tag"><%= tag.name %></span>
+                    <% end %>
+                  </dd>
+                </dl>
+              </li>
+
+              <li>
+                <dl>
+                  <dt>流行标签：</dt>
+                  <dd>
+                    <% @pop_tags.each do |tag| %>
+                        <span class="tag"><%= tag.name %></span>
+                    <% end %>
+                  </dd>
+                </dl>
+              </li>
+            </ul>
+        <div class="action">
+          <%= submit_tag '下一步' %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="tags">
+
+  </div>
+
 </div>

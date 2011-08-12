@@ -1,0 +1,22 @@
+.action {
+    margin: 50px 0 0 200px;
+}
+
+.field {
+    margin: 10px;
+}
+
+ul li {
+    margin: 15px;
+    display: block;
+}
+
+dt {
+    float: left;
+}
+
+dd span {
+    margin: 0 5px;
+    background-color: #adff2f;
+    cursor: pointer
+}

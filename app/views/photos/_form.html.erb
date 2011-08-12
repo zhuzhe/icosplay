@@ -1,4 +1,4 @@
 <%= form_tag(upload_album_photos_path, :multipart => true) do %>
-  <%= file_field_tag 'photo' %>
+  <%= file_field_tag 'photo', :readonly => "readonly" %>
   <%= submit_tag '上传' %>
 <% end %>
