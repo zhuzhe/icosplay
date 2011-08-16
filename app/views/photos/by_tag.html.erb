@@ -2,7 +2,7 @@
     <%= stylesheet_link_tag 'photo/search_tag' %>
     <% end %>
 <div class="wrapper">
-  <h2>标签：<span><%= @tag_name%></span></h2>
+  <h2>标签：<span><%= @tag.name%></span></h2>
   <ul class="photos">
     <% @photos.each do |photo| %>
         <li>

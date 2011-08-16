@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110811093343) do
+ActiveRecord::Schema.define(:version => 20110815082124) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20110811093343) do
     t.integer  "album_id"
     t.integer  "count"
     t.string   "web_url"
+    t.string   "description"
   end
 
   create_table "photos_tags", :id => false, :force => true do |t|

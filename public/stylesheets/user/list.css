@@ -1,0 +1,35 @@
+.user ul {
+    float:left;
+    width: 100%;
+    height: 100%;
+}
+
+.user div {
+   float:left;
+   margin: 5px;
+}
+
+.user .user_name {
+    margin-top: 20px;
+    width: 400px;
+}
+
+.user .tags {
+    width: 400px;
+}
+
+.user .sex {
+    float: left;
+    width: 400px;
+}
+.hot_users  li {
+    float: left;
+    width: 100%;
+    height: 100px;
+    margin: 10px;
+}
+
+.hot_users li img {
+    width: 100px;
+    height: 100%;
+}

@@ -89,13 +89,23 @@ class PhotosController < ApplicationController
 
       uploaded_io = params[:photo]
       file_suffix = uploaded_io.original_filename.split('.').last
-      @photo = Photo.create(:album_id => current_user.album.id)
+      @photo = Photo.create(:album_id => current_user.album.id, :description => params[:description])
       @photo.web_url = @photo.uri = @photo.id2relative_path + '.' + file_suffix
-      @photo.save
 
       File.open(@photo.id2path + '.' + file_suffix, 'w') do |file|
         file.write(uploaded_io.read)
       end
+
+      @photo.tag_ids =  params[:tag].split(' ').inject([]) do |all, tag_name|
+        if ((tag = Tag.find_by_name(tag_name)).nil?)
+           tag = Tag.create(:name => tag_name)
+        end
+        all << tag.id
+      end
+
+      @photo.save
+
+
       redirect_to photo_path(@photo)
   end
 
@@ -117,13 +127,13 @@ class PhotosController < ApplicationController
   end
 
   def search_tag
-    @photos = nil
-    @tag = Tag.where("name like ?", "%#{params[:tag_name]}%").limit(1).first
-    if @tag.nil?
-      @photos = []
-    else
-      @photos = @tag.photos
-    end
+      @tag_name = params[:tag_name]
+      @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 30)
+  end
+
+  def by_tag
+    @tag = Tag.find(params[:tag_id])
+    @photos = Photo.joins(:tags).where("tags.id = ?", @tag.id).paginate(:page => params[:page], :per_page => 30)
   end
 
   def favorite

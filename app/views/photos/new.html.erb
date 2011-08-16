@@ -1,5 +1,8 @@
 <%= content_for :head do %>
     <%= stylesheet_link_tag 'photo/new' %>
+    <%= javascript_include_tag 'tag' %>
+    <%= javascript_include_tag 'photos/new' %>
+
 <% end %>
 
 <div class="wrapper">
@@ -9,27 +12,30 @@
             <ul>
               <li>照片：<%= file_field_tag 'photo', :readonly => "readonly" %></li>
               <li>标签(多个标签用空格分隔):</li>
-              <li><%= text_field_tag 'tag', :readonly => "readonly" %></li>
-              <li>
-                <dl>
-                  <dt>我的标签：</dt>
-                  <dd>
-                    <% @user.tags.each do |tag| %>
-                        <span class="tag"><%= tag.name %></span>
-                    <% end %>
-                  </dd>
-                </dl>
-              </li>
+              <li><%= text_field_tag :tag %></li>
+              <!--<li>-->
+                <!--&lt;!&ndash;<dl>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<dt>我的标签：</dt>&ndash;&gt;-->
+                  <!--&lt;!&ndash;<dd>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<% @user.tags.each do |tag| %>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<span class="tag unselected"><%= tag.name %></span>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<% end %>&ndash;&gt;-->
+                  <!--&lt;!&ndash;</dd>&ndash;&gt;-->
+                <!--&lt;!&ndash;</dl>&ndash;&gt;-->
+              <!--</li>-->
 
-              <li>
+              <li id="photo_tags">
                 <dl>
                   <dt>流行标签：</dt>
                   <dd>
                     <% @pop_tags.each do |tag| %>
-                        <span class="tag"><%= tag.name %></span>
+                        <span class="tag unselected"><%= tag.name%></span>
                     <% end %>
                   </dd>
                 </dl>
+              </li>
+              <li>
+                一句描述：<%= text_field_tag :description, '',:style => 'width: 300px;'%>
               </li>
             </ul>
         <div class="action">

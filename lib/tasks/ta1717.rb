@@ -98,4 +98,11 @@ class Ta1717
       puts tag.name
     end
   end
+
+  def fix_tag
+    Tag.find_each do |tag|
+      tag.name = tag.name.gsub(' ',  '')
+      tag.save
+    end
+  end
 end

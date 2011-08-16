@@ -80,7 +80,7 @@ class UsersController < ApplicationController
   end
 
   def hot
-    @hot_users = User.where("level >= ?", 5)
+    @users = User.where("level >= ?", 5).paginate(:per_page => 25, :page => params[:page])
   end
 
   def search_tag

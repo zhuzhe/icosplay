@@ -20,3 +20,7 @@ end
 task :tag_photo_by_album_name => :environment do
   Ta1717.new.tag_photo_by_album_name
 end
+
+task :fix_tag => :environment do
+  Ta1717.new.fix_tag
+end

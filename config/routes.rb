@@ -51,7 +51,19 @@ Icosplay::Application.routes.draw do
     end
   end
 
-  resources :tags
+  resources :tags do
+    resources :photos do
+      collection do
+        get 'by_tag'
+      end
+    end
+
+    resources :users do
+      collection do
+        get 'by_tag'
+      end
+    end
+  end
 
   root :to => "welcome#index"
 

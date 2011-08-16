@@ -1,3 +1,9 @@
+.main {
+    width: 650px;
+    float: left;
+    border-right: 1px dashed silver;
+}
+
 .hot_users {
     float: left;
 }
@@ -40,5 +46,20 @@
 .top_photos ul li img {
     width: 120px;
     height: 150px;
+}
+
+.right {
+    width: 250px;
+    float: left;
+    padding: 50px 10px;
+}
+
+.pop_tags {
+    margin:0 10px;
+}
+
+.pop_tags li {
+    float: left;
+    margin: 5px;
 }
 

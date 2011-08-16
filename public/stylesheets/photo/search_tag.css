@@ -1,0 +1,23 @@
+h2 span {
+    color: #adff2f;
+}
+.photos {
+    width: 650px;
+    margin: 30px 20px;
+}
+.photos li{
+    float: left;
+    margin: -2px 0;
+    padding: 0;
+}
+
+.photos a {
+    padding: 0;
+    margin: 0;
+}
+.photos img {
+    width: 120px;
+    height: 150px;
+    padding: 0;
+    margin: 0;
+}
