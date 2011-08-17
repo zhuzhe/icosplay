@@ -1,5 +1,7 @@
 Icosplay::Application.routes.draw do
 
+  resources :messages
+
   resources :avatars
 
   resources :rels

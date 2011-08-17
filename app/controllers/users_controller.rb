@@ -114,10 +114,12 @@ class UsersController < ApplicationController
   end
 
   def masters
-    @masters = current_user.masters
+    @user = current_user
+    @masters = @user.masters
   end
 
   def followers
-    @followers = current_user.followers
+    @user = current_user
+    @followers = @user.followers
   end
 end

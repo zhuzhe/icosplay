@@ -1,0 +1,10 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag 'user/follower' %>
+    <%= stylesheet_link_tag 'user/social_list' %>
+<% end %>
+<div class="wrapper">
+  <div class="main">
+    <h2>我的粉丝Coser：</h2>
+    <%= render :partial => 'users/social_list', :locals => {:users => @followers} %>
+  </div>
+</div>

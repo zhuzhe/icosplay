@@ -93,3 +93,9 @@
     float: left;
     margin: 10px;
 }
+
+.messages_container {
+    width: 100%;
+    float: left;
+    margin: 10px;
+}
