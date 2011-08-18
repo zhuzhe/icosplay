@@ -1,0 +1,35 @@
+    <div class="messages_container">
+      <span>留言：</span>
+      <ul class="messages">
+        <% @user.received_messages.each do |msg| %>
+            <li class="message">
+              <div class="avatar">
+                <%= link_to msg.from do %>
+                    <%= image_tag msg.from.avatar.url %>
+                <% end %>
+              </div>
+              <div class="content">
+                <div class="username">
+                  <%= link_to msg.from.name %><span class="time"><%= msg.created_at.to_s(:db) %></span>
+                </div>
+                <div class="talk">
+                  <%= msg.content %>
+                </div>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+
+      <div class="new_message_container">
+        <span>说点什么吧:</span>
+          <%= form_for Message.new do |f| %>
+            <%= f.hidden_field :to_id, :value => @user.id %>
+            <div class="message_content">
+              <%= f.text_area :content, :cols => '', :rows => '' %>
+            </div>
+            <div class="action">
+              <%= submit_tag "确定" %>
+            </div>
+        <% end %>
+      </div>
+    </div>

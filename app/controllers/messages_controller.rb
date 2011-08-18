@@ -41,16 +41,9 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @message = Message.new(params[:message])
+    @message.from = current_user
 
-    respond_to do |format|
-      if @message.save
-        format.html { redirect_to(@message, :notice => 'Message was successfully created.') }
-        format.xml  { render :xml => @message, :status => :created, :location => @message }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @message.errors, :status => :unprocessable_entity }
-      end
-    end
+    reidirect_to
   end
 
   # PUT /messages/1

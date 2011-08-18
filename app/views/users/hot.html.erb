@@ -1,9 +1,8 @@
 <%= content_for :head do %>
     <%= stylesheet_link_tag 'user/hot' %>
-    <%= stylesheet_link_tag 'user/list' %>
 <% end %>
 <div class="wrapper">
 
   <h2>人气Coser</h2>
-  <%= render :partial => 'users/list' %>
+  <%= render :partial => 'users/list', :locals => {:users => @users} %>
 </div>

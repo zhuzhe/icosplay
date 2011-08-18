@@ -1,35 +1,51 @@
-.user ul {
-    float:left;
-    width: 100%;
-    height: 100%;
-}
-
-.user div {
-   float:left;
-   margin: 5px;
-}
-
-.user .user_name {
-    margin-top: 20px;
-    width: 400px;
-}
-
-.user .tags {
-    width: 400px;
-}
-
-.user .sex {
+ul.user_list {
+    width: 650px;
     float: left;
-    width: 400px;
-}
-.hot_users  li {
-    float: left;
-    width: 100%;
-    height: 100px;
     margin: 10px;
 }
 
-.hot_users li img {
+ul.user_list li{
+    float: left;
+    width: 100%;
+    height: 120px;
+    margin: 5px;
+}
+
+ul.user_list li .info div {
+    float: left;
+    margin: 5px;
+    width: 100%;
+}
+
+ul.user_list li .avatar {
+    float: left;
     width: 100px;
     height: 100%;
+}
+
+ul.user_list li .avatar img {
+    height: 100%;
+    width: 100%;
+}
+
+ul.user_list li .info {
+    float: left;
+    width: 500px;
+    height: 100%;
+    margin: 10px
+}
+
+ul.user_list li .name {
+    float: left;
+    width: 100%;
+}
+
+ul.user_list li .sex {
+    float: left;
+    width: 100%;
+}
+
+ul.user_list li .tags {
+    float: left;
+    width: 100%;
 }

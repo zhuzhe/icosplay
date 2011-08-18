@@ -1,5 +1,7 @@
 Icosplay::Application.routes.draw do
 
+  resources :cities
+
   resources :messages
 
   resources :avatars
@@ -44,6 +46,7 @@ Icosplay::Application.routes.draw do
     member do
       get 'favorite'
       get 'unfavorite'
+      get 'home'
     end
 
     resources :photos do
@@ -89,6 +92,7 @@ Icosplay::Application.routes.draw do
 
   match 'profile' => 'users#show'
   match 'register' => 'users#new'
+  match 'add_tag_for_register'=> 'users#add_tag_for_register'
 
   match 'me_community' => 'communities#me'
   # The priority is based upon order of creation:

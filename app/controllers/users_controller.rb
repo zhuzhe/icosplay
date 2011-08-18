@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.xml
 
 #  before_filter :require_login, :only => [:favorite, :unfavorite]
 
@@ -13,18 +11,13 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.xml
   def show
     @user = User.find(params[:id])
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @user }
+    if @user.id == current_user_id
+       redirect_to home_user_path(@user)
     end
   end
 
-  # GET /users/new
-  # GET /users/new.xml
   def new
     @user = User.new
 
@@ -34,25 +27,23 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-  # POST /users
-  # POST /users.xml
   def create
     @user = User.new(params[:user])
+    @user.tag_ids = Tag.create_from_text(params[:tags])
+    @user.avatar = Avatar.create(:url => '/images/avatars/default.jpg')
+    @user.birthday = Date.new(Time.now.year - params[:age].to_i)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to profile_path
+      redirect_to profile_path(:id => @user.id)
     else
       redirect_to register_path
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.xml
   def update
     @user = User.find(params[:id])
 
@@ -67,8 +58,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
     @user.destroy
@@ -91,6 +80,11 @@ class UsersController < ApplicationController
     else
       @users = @tag.users
     end
+  end
+
+  def by_tag
+    @tag = Tag.find(params[:tag_id])
+    @users = User.joins(:tags).where("tags.id = ?", @tag.id).paginate(:page => params[:page], :per_page => params[:per_page])
   end
 
   def favorite
@@ -121,5 +115,13 @@ class UsersController < ApplicationController
   def followers
     @user = current_user
     @followers = @user.followers
+  end
+
+  def add_tag_for_register
+
+  end
+
+  def home
+    @user = current_user
   end
 end

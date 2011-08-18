@@ -12,8 +12,22 @@
       </div>
       <div class="field">
         <%= f.label :sex, "性别" %>
-        <br/>
-        <%= f.select :sex, [["男", 0], ["女", 1], ["伪娘", 2]] %>
+        <%= f.select :sex, [["男", 0], ["女", 1]] %>
+      </div>
+
+      <div class="filed">
+        <%= f.label :age, "年龄" %>
+        <%= select_tag :age, options_for_select((13..30).collect{|i|[i, i]}) %>
+      </div>
+
+      <div class="field">
+        <%= f.label :city, '常居住地' %>
+        <%= f.select :city_id, City.all.collect{|c|[c.name, c.id]} %>
+      </div>
+
+      <div class="field">
+        <%= f.label :tags, '个性标签' %>
+        <%= text_field_tag :tags %>
       </div>
 
       <div class="field">
@@ -30,6 +44,8 @@
         <%= f.submit "注册" %>
       </div>
   <% end %>
+
+
 </div>
 
 
