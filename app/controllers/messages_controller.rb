@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
-  # GET /messages
-  # GET /messages.xml
+
+  before_filter :require_login, :only => [:create]
+
   def index
     @messages = Message.all
 
@@ -42,8 +43,8 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.from = current_user
-
-    reidirect_to
+    @message.save
+    redirect_to user_path(@message.to) + "#messages"
   end
 
   # PUT /messages/1

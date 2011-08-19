@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   before_filter :require_login, :only => [:favorite, :new, :upload]
 
   def index
-    @photos = Photo.all
+    @photos = Photo.paginate(:page => params[:page], :per_page => 25)
 
     respond_to do |format|
       format.html # index.html.erb

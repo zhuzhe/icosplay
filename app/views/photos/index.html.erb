@@ -1,23 +1,27 @@
-<h1>Listing photos</h1>
-
-<table>
-  <tr>
-    <th>Uri</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @photos.each do |photo| %>
-  <tr>
-    <td><%= photo.uri %></td>
-    <td><%= link_to 'Show', photo %></td>
-    <td><%= link_to 'Edit', edit_photo_path(photo) %></td>
-    <td><%= link_to 'Destroy', photo, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
+<%= content_for :head do %>
+    <%= stylesheet_link_tag 'gallery' %>
+    <%= javascript_include_tag 'gallery' %>
 <% end %>
-</table>
+<div class="wrapper">
+  <div class="gallery_container">
+    <div class="thumb_container">
+      <div class="thumb_back">
+        <%= link_to '<', ApplicationHelper::JAVASCRIPT %>
+      </div>
+      <div class="thumbs">
+        <ul id="gallery_thumb">
+          <% @photos.each do |photo| %>
+              <li>
+                <%= image_tag photo.web_url %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
 
-<br />
 
-<%= link_to 'New Photo', new_photo_path %>
+      <div class="thumb_forward">
+        <%= link_to '>', ApplicationHelper::JAVASCRIPT %>
+      </div>
+    </div>
+  </div>
+</div>

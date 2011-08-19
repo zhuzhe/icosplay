@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :master_rels, :class_name => 'Rel', :foreign_key => 'follower_id'
   has_many :followers, :class_name => 'User', :through => :follower_rels
   has_many :masters, :class_name => 'User', :through => :master_rels
-  has_many :received_messages, :foreign_key => 'to_id', :class_name => 'Message'
-  has_many :delivered_messages, :foreign_key => 'from_id', :class_name => 'Message'
+  has_many :received_messages, :foreign_key => 'to_id', :class_name => 'Message', :order => 'created_at DESC'
+  has_many :delivered_messages, :foreign_key => 'from_id', :class_name => 'Message', :order => 'created_at DESC'
   has_and_belongs_to_many :tags, :join_table => 'users_tags'
   has_and_belongs_to_many :favorite_photos, :class_name => "Photo", :join_table => 'favorite_photos'
 
