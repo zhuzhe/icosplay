@@ -12,23 +12,29 @@
       <% end %>
     </div>
 
+    <h3 class="title">评论&nbsp;&nbsp;· · · · · ·&nbsp;</h3>
     <ul class="comments">
-      <li class="comment">
-        <div class="avatar">
-          <%= link_to '' do %>
-              <%= image_tag 'cos/test-1.jpg' %>
-          <% end %>
-        </div>
-        <div class="content">
-          <div class="username">
-            <%= link_to '老虎的人' %>
-          </div>
-          <div class="talk">
-            很漂亮！！！！！
-          </div>
-        </div>
 
-      </li>
+      <% @photo.comments.each do |comment| %>
+          <li class="comment">
+            <div class="avatar">
+              <%= link_to comment.user do %>
+                  <%= image_tag comment.user.avatar.url %>
+              <% end %>
+            </div>
+            <div class="content">
+              <div class="username">
+                <%= link_to comment.user.name, comment.user %>
+                <span class="time"><%= comment.created_at.strftime("%Y-%m-%d") %></span>
+              </div>
+              <div class="talk">
+                <%= comment.content %>
+              </div>
+            </div>
+
+          </li>
+          <% end %>
+
     </ul>
 
     <div class="new_comment">

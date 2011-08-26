@@ -6,7 +6,7 @@
   <ul class="photos">
     <% @photos.each do |photo| %>
         <li>
-          <%= link_to do %>
+          <%= link_to photo do %>
               <%= image_tag photo.web_url %>
           <% end %>
         </li>

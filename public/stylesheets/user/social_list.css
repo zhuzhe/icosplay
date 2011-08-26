@@ -16,6 +16,7 @@ ul.social_list li div {
 ul.social_list li .avatar {
     width: 120px;
     height: 120px;
+    margin-right: 20px;
 }
 
 ul.social_list li .avatar img {
@@ -31,5 +32,13 @@ ul.social_list li .name {
 
 ul.social_list li .info {
     width: 400px;
+}
+
+ul.social_list .city {
+    width: 400px;
+}
+
+ul.social_list .tags span{
+    padding: 3px;
 }
 

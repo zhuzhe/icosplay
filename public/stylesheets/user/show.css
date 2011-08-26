@@ -99,3 +99,8 @@
     float: left;
     margin: 10px;
 }
+
+.messages_container .title {
+    font-size: 18px;
+    color: green;;
+}

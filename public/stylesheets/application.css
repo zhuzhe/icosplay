@@ -68,3 +68,8 @@ body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
     width: 200px;
     float: left;
 }
+
+.header .person li {
+    float : left;
+    margin: 5px;
+}

@@ -11,7 +11,15 @@
             </div>
             <div class="info">
               <span><%= h user.sex_text %></span>
-              <span><%= h user.city.name %></span>
+              <span><%= h "(#{user.age}岁)" %></span>
+            </div>
+            <div class="city">
+              <%=h "#{user.city.name}" %>
+            </div>
+            <div class="tags">
+              <% user.tags.each do |tag| %>
+                <span><%= tag.name %></span>
+              <% end %>
             </div>
           </li>
       <% end %>

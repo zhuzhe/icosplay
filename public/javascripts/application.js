@@ -30,7 +30,11 @@ var Icosplay = {
 
     favorite_photo : function(photo_id, callback) {
         var self = this;
-        $.get(self.path.favorite_photo_path(photo_id), function(){
+        $.get(self.path.favorite_photo_path(photo_id), function(result){
+            if (result.status === 'fail' ) {
+                window.location = '/login';
+                return;
+            }
             callback();
         }, 'json');
     }
