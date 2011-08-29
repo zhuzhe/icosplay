@@ -155,4 +155,5 @@ class PhotosController < ApplicationController
     @user = User.find(params[:user_id])
     @photos = @user.favorite_photos
   end
+
 end

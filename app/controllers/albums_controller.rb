@@ -92,4 +92,9 @@ class AlbumsController < ApplicationController
       format.xml { head :ok }
     end
   end
+
+
+  def slide
+    @photos = Photo.limit(10)
+  end
 end

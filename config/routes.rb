@@ -1,5 +1,7 @@
 Icosplay::Application.routes.draw do
 
+  match '/slide' => 'albums#slide'
+
   resources :cities
 
   resources :messages

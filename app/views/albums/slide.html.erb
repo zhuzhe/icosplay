@@ -1,0 +1,77 @@
+<%= content_for :head do %>
+    <style type="text/css">
+        .slide {
+            width: 300px;
+            height: 300px;
+            background-color: white;
+            border: 1px solid silver;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .loading {
+            height: 25%;
+            width: 100%;
+            position: absolute;
+            left: 0;
+            top: 40%;
+            text-align: center;
+        }
+
+        .photo {
+            display: none;
+            opacity: 0;
+        }
+
+        .photo img {
+
+        }
+
+        .loading img {
+            width: 35px;
+            height: 35px;
+        }
+
+
+    </style>
+    <script type="text/javascript">
+        $(function() {
+
+            var $slide = $('.slide');
+            var $img = $('.photo img');
+            var $loading = $('.loading');
+            var $photo = $('.photo');
+            var img_url = '/images/cos/test-1.jpg';
+
+            $slide.click(function() {
+                $.get(img_url, function() {
+                    $img.attr('src',img_url);
+                    $photo.show();
+                    $slide.stop().animate({
+                       width: $img.width(),
+                       height: $img.height()
+                    });
+                    $loading.hide(function(){
+                        $photo.animate({
+                            opacity: 1
+                        });
+                    });
+
+                });
+            })
+
+        })
+    </script>
+<% end %>
+
+<div class="wrapper">
+  <div class="slide">
+
+    <div class="photo">
+      <img src="" alt="">
+    </div>
+    <div class="loading">
+      <a><%= image_tag 'loading.gif' %></a>
+    </div>
+  </div>
+</div>
