@@ -4,17 +4,21 @@
 <% end %>
 <div class="wrapper">
   <div class="main">
+    <div class="nav_second">
+      <%= link_to '同城' %>
+      <%= link_to '人气' %>
+    </div>
     <div class="select_city">
-        <div class="selected_city" id="selected_city">
-          <%= link_to @city.name, ApplicationHelper::JAVASCRIPT %>
-        </div>
+      <div class="selected_city" id="selected_city">
+        <%= link_to @city.name, ApplicationHelper::JAVASCRIPT %>
+      </div>
       <ul class="cities" style="display:none">
-      <% @cities.each do |city| %>
-          <li>
-            <%= link_to city.name, city %>
-          </li>
-      <% end %>
-    </ul>
+        <% @cities.each do |city| %>
+            <li>
+              <%= link_to city.name, city %>
+            </li>
+        <% end %>
+      </ul>
     </div>
 
     <%= render :partial => 'users/list', :locals => {:users => @users} %>

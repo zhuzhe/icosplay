@@ -42,19 +42,8 @@
 
     </div>
 
-    <!--<div class="person_nav">-->
-    <!--
-  <% if @user.community %>-->
-        <!--<%= link_to '> 我的Cos社', me_community_path %>-->
-        <!--
-  <% else %>-->
-        <!--<%= link_to '我的Cos社', choice_communities_path %>-->
-        <!--
-  <% end %>-->
-    <!--</div>-->
-
     <div class="me">
-      <h3><%= link_to '> Me cosplay', me_album_path(@user.album) %> </h3>
+      <h3><%= link_to '> Me', me_album_path(@user.album) %> </h3>
       <ul>
         <% if @user.album %>
             <% @user.album.photos.each_with_index do |photo, index| %>
@@ -75,7 +64,7 @@
   <div class="right">
     <ul>
       <li>
-        <%= link_to "> 关注", masters_users_path %>
+        <%= link_to "> 喜欢", masters_users_path %>
       </li>
       <li>
         <%= link_to "> 粉丝", followers_users_path %>

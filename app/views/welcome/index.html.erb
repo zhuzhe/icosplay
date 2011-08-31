@@ -6,29 +6,16 @@
 
   <div class="main">
 
-  <div class="hot_users">
-    <h2><%= link_to '人气Coser', hot_users_path %></h2>
-    <ul>
-      <% @hot_users.each do |user| %>
-          <li>
 
-            <div>
-              <%= link_to user do%>
-              <%= image_tag user.avatar.url %>
-              <% end %>
-            </div>
-            <div class="user_name">
-
-              <%= link_to user.name, user %>
-            </div>
-          </li>
-      <% end %>
-
-    </ul>
-  </div>
 
   <div class="top_photos">
     <h2><%= link_to '人气Cos美图', top_photos_path %></h2>
+    <div class="nav_second">
+      <%= link_to '人气' %>
+      <%= link_to '推荐' %>
+      <%= link_to '最新' %>
+      <%= link_to '更多' %>
+    </div>
     <ul>
       <% @top_photos.each do |photo| %>
 

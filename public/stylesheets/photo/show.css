@@ -43,31 +43,31 @@
     margin: 5px;
 }
 
-.avatar {
+.comment .avatar {
     float: left;
     height: 100%;
 }
 
-.avatar img{
+.comment .avatar img{
     width: 50px;
     height: 50px;
 }
 
-.content {
+.comment .content {
     float: left;
     margin-left: 15px;
     width : 470px;
 }
 
-.content .username {
+.comment .content .username {
     padding: 3px 0 3px 3px;
 }
 
-.content .time {
+.comment .content .time {
     padding-left: 10px;
 }
 
-.talk {
+.comment .talk {
     float: left;
     width: 100%;
     margin: 10px;

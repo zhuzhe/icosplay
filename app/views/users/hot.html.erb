@@ -2,7 +2,10 @@
     <%= stylesheet_link_tag 'user/hot' %>
 <% end %>
 <div class="wrapper">
-
+   <div class="nav_second">
+      <%= link_to '同城' %>
+      <%= link_to '人气' %>
+    </div>
   <h2>人气Coser</h2>
   <%= render :partial => 'users/list', :locals => {:users => @users} %>
 </div>

@@ -33,19 +33,19 @@
             </div>
 
           </li>
-          <% end %>
+      <% end %>
 
     </ul>
 
     <div class="new_comment">
-
+      说点什么吧：
       <%= form_for Comment.new do |f| %>
           <%= f.hidden_field :photo_id, :value => @photo.id %>
           <div class="inputarea">
             <%= f.text_area :content, :cols => '', :rows => '' %>
           </div>
           <div class="submit_comment">
-            <%= f.submit '加上去' %>
+            <%= f.submit '发送' %>
           </div>
       <% end %>
 
@@ -55,7 +55,14 @@
 
   <div class="right">
     <div class="visit_master">
-      <%= link_to '> 拜访主人吧', @photo.album.user %>
+      <div class="avatar">
+        <%= link_to @photo.album.user do %>
+            <%= image_tag @photo.album.user.avatar.url %>
+        <% end %>
+      </div>
+      <div class="username">
+        <%= link_to @photo.album.user.name, @photo.album.user %>
+      </div>
     </div>
 
     <ul class="tags">
