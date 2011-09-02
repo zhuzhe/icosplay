@@ -76,7 +76,7 @@ class Ta1717
 
   def create_tag_by_album_name
     Album.find_each do |album|
-      album.name.match(/《(.*)》/)
+#      album.name.match(/《(.*)》/)
       tag_name = $1
       next if tag_name.nil?
       tag = Tag.find_by_name(tag_name)
@@ -89,7 +89,7 @@ class Ta1717
 
   def tag_photo_by_album_name
     Photo.find_each do |photo|
-      photo.album.name.match(/《(.*)》/)
+#      photo.album.name.match(/《(.*)》/)
       tag_name = $1
       next if tag_name.nil?
       tag = Tag.find_by_name(tag_name)
