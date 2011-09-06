@@ -20,6 +20,11 @@ div {
 
 a {
     text-decoration: none;
+    color: #AC58FA;
+}
+
+body {
+    background-color: #DCDCDC;
 }
 
 body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, button, textarea, blockquote {
@@ -44,9 +49,6 @@ body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
     margin: 0 auto;
 }
 
-
-
-
 .header .nav {
     width: 300px;
     height: 50px;
@@ -70,6 +72,104 @@ body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
 }
 
 .header .person li {
-    float : left;
+    float: left;
+    margin: 5px;
+}
+
+#canvas {
+    background-color: #FFFFFF;
+    float: left;
+    width: 530px;
+    padding: 20px 0 0 20px;
+}
+
+h2 {
+    font-size: 14px;
+    font-weight: normal;
+    color: #777777;
+}
+
+#canvas .nav_second {
+    float: left;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#canvas .nav_second div {
+    float: right;
+    text-align: right;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+#canvas .nav_second h2 {
+    width: 200px;
+    float: left;
+}
+
+#canvas div {
+    background-color: #FFFFFF;
+}
+
+#canvas ul {
+    background-color: #FFFFFF;
+}
+
+#canvas ul li {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+#canvas img {
+    width: 245px;
+    height: 200px;
+}
+
+#canvas .pages {
+    width: 100%;
+    float: left;
+    margin: 0 40px;
+}
+
+#canvas .pages a {
+    border: 1px solid #DDDDDD;
+    font-size: 12px;
+    padding: 0.2em 0.5em;
+}
+
+#canvas .pages em {
+    padding: 0.2em 0.5em;
+}
+
+#canvas .pages a:hover {
+    background-color:#AC58FA;
+    color: #FFFFFF;
+}
+
+.main {
+    width: 550px;
+    float: left;
+    background-color: #ffffff;
+}
+
+.right {
+    width: 250px;
+    float: left;
+    padding: 0 10px;
+}
+
+.right .search_box {
+    margin: 0 0 20px 0
+}
+
+.right .search_box input {
+}
+
+.pop_tags {
+    margin:0 10px;
+}
+
+.pop_tags li {
+    float: left;
     margin: 5px;
 }

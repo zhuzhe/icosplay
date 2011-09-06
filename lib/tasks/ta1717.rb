@@ -105,4 +105,40 @@ class Ta1717
       tag.save
     end
   end
+
+  def random_album
+    album_ids = Album.all.collect{|a| a.id}
+    Photo.find_each do |p|
+      next if p.album_id
+      p.album_id =  album_ids[rand(album_ids.size)]
+      p.save
+    end
+  end
+
+  def random_user
+    album_ids = Album.all.collect{|a| a.id}
+    city_ids = City.all.collect{|c| c.id}
+    sex_ids = [0, 1]
+    album_ids.each_with_index do |album_id, index|
+      username = "test_#{index}"
+      next if User.find_by_name(username)
+      User.create(:name => username,
+                  :sex => sex_ids[rand(2)],
+                  :email => "icosplay_#{index}@icosplay.com",
+                  :pwd => "test",
+                  :avatar_id => 2,
+                  :birthday => "19#{[8, 9][rand(2)]}#{rand(10)}/#{rand(12) + 1}/#{rand(28) + 1}",
+                  :city_id => city_ids[rand(city_ids.size)]
+      )
+    end
+  end
+
+  def fix
+    Album.all.collect{|a| a.id}.each_with_index do |id, index|
+      user = User.find_by_name("test_#{index}")
+      album = Album.find(id)
+      album.user = user
+      album.save
+    end
+  end
 end

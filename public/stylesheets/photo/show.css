@@ -1,18 +1,9 @@
-.main {
-    width: 650px;
-    float: left;
-}
 
 .photo {
    float: left;
    margin-bottom: 50px;
-   width: 70%;
-}
-
-.right {
-    float: left;
-    font-size: 24px;
-    margin: 100px 0 0 50px;
+   width: 530px;
+   padding: 0 20px;
 }
 
 .visit_master {
@@ -33,12 +24,17 @@
 .comments {
     float: left;
     width: 100%;
+    margin: 0 0 0 20px;
+}
+
+.comments ul{
+    float: left;
+    margin-top: 20px;
 }
 
 .comment {
     width: 550px;
     height: 100px;
-    border-bottom: 1px dashed silver;
     float: left;
     margin: 5px;
 }
@@ -103,9 +99,8 @@ textarea {
 }
 
 .tool {
-    margin-top: 50px;
-    width: 200px;
-    float: left;
+    height: 30px;
+    padding: 5px 0 0 0;
 }
 
 .title {

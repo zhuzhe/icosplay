@@ -1,0 +1,29 @@
+<div id="canvas">
+  <div class="nav_second">
+    <h2><%= h title %></h2>
+
+    <div>
+      <%= link_to '人气' %>
+      <%= link_to '推荐' %>
+      <%= link_to '最新' %>
+      <%= link_to '更多' %>
+    </div>
+  </div>
+  <ul>
+    <% photos.each do |photo| %>
+
+        <li>
+          <div>
+            <%= link_to photo do %>
+                <%= image_tag photo.web_url %>
+            <% end %>
+          </div>
+        </li>
+    <% end %>
+  </ul>
+
+  <div class="pages">
+      <%= will_paginate photos, :previous_label => '', :next_label => 'GO' %>
+  </div>
+
+</div>

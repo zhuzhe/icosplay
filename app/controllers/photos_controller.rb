@@ -129,11 +129,14 @@ class PhotosController < ApplicationController
   def search_tag
       @tag_name = params[:tag_name]
       @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 30)
+      @relative_tags = Tag.limit(10)
   end
 
   def by_tag
     @tag = Tag.find(params[:tag_id])
     @photos = Photo.joins(:tags).where("tags.id = ?", @tag.id).paginate(:page => params[:page], :per_page => 30)
+    @relative_tags = []
+    @relative_photos = []
   end
 
   def favorite
@@ -154,6 +157,11 @@ class PhotosController < ApplicationController
   def favorited
     @user = User.find(params[:user_id])
     @photos = @user.favorite_photos
+  end
+
+  def search
+     @tag_name = params[:tag_name]
+     @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 20)
   end
 
 end

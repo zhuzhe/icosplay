@@ -1,15 +1,46 @@
 <%= content_for :head do %>
     <%= stylesheet_link_tag 'photo/search_tag' %>
-    <% end %>
+<% end %>
 <div class="wrapper">
-  <h2>标签：<span><%= @tag_name%></span></h2>
-  <ul class="photos">
-    <% @photos.each do |photo| %>
-        <li>
-          <%= link_to do %>
-              <%= image_tag photo.web_url %>
-          <% end %>
-        </li>
-    <% end %>
-  </ul>
+  <div class="main">
+    <div id="canvas">
+      <div class="nav_second">
+        <h2><%= "标签:#{@tag_name}" %></h2>
+      </div>
+      <ul>
+        <% @photos.each do |photo| %>
+            <li>
+              <div>
+                <%= link_to photo do %>
+                    <%= image_tag photo.web_url %>
+                <% end %>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+
+      <div class="pages">
+        <%= will_paginate @photos, :previous_label => '<<', :next_label => 'GO' %>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="right">
+    <div class="search_box">
+      <%= form_tag search_photos_path do %>
+          <%= text_field_tag 'tag_name' %>
+          <%= submit_tag 'Ｇｏ' %>
+      <% end %>
+    </div>
+    <ul class="pop_tags">
+      <% @relative_tags.each do |tag| %>
+          <li>
+            <%= link_to tag.name, by_tag_tag_photos_path(tag) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
 </div>

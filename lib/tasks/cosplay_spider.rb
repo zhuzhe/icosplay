@@ -24,3 +24,15 @@ end
 task :fix_tag => :environment do
   Ta1717.new.fix_tag
 end
+
+task :random_album => :environment do
+  Ta1717.new.random_album
+end
+
+task :random_user => :environment do
+  Ta1717.new.random_user
+end
+
+task :fix => :environment do
+  Ta1717.new.fix
+end

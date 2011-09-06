@@ -1,19 +1,16 @@
-<%= content_for :head do %>
-    <%= stylesheet_link_tag 'index' %>
-<% end %>
 <div class="wrapper">
-
-  <div class="main">
-   <%= render :partial => 'share/canvas', :locals => {:photos => @top_photos, :title => '人气Cos美图'} %>
+ <div class="main">
+   <%= render :partial => 'share/canvas', :locals => {:photos => @top_photos, :title => ''} %>
   </div>
 
   <div class="right">
-     <div class="search_box">
+      <div class="search_box">
         <%= form_tag search_photos_path do %>
             <%= text_field_tag 'tag_name' %>
             <%= submit_tag 'Ｇｏ' %>
         <% end %>
       </div>
+
       <ul class="pop_tags">
         <% @pop_tags.each do |tag| %>
             <li>

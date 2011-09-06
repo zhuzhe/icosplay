@@ -6,15 +6,27 @@
   <%= hidden_field_tag :photo_id, @photo.id %>
 
   <div class="main">
+
     <div class="photo">
-      <%= link_to next_album_photo_path(@photo.album, @photo) do %>
-          <%= image_tag @photo.web_url || @photo.uri %>
+       <div class="tool">
+      <% if current_user && current_user.favorite_photos.exists?(@photo.id) %>
+          <!--<%= link_to '收藏', ApplicationHelper::JAVASCRIPT, :id => 'favorite_photo', :photo_id => @photo.id %>-->
+          <span id="favorited_photo">已收藏</span>
+      <% else %>
+          <%= link_to '收藏', ApplicationHelper::JAVASCRIPT, :id => 'favorite_photo', :photo_id => @photo.id %>
+          <span id="favorited_photo" style="display:none">已收藏</span>
       <% end %>
     </div>
+      <div class="img">
+        <%= link_to next_album_photo_path(@photo.album, @photo) do %>
+          <%= image_tag @photo.web_url || @photo.uri %>
+      <% end %>
+      </div>
+    </div>
+    <div class="comments">
 
     <h3 class="title">评论&nbsp;&nbsp;· · · · · ·&nbsp;</h3>
-    <ul class="comments">
-
+    <ul>
       <% @photo.comments.each do |comment| %>
           <li class="comment">
             <div class="avatar">
@@ -37,8 +49,7 @@
 
     </ul>
 
-    <div class="new_comment">
-      说点什么吧：
+      <div class="new_comment">
       <%= form_for Comment.new do |f| %>
           <%= f.hidden_field :photo_id, :value => @photo.id %>
           <div class="inputarea">
@@ -50,6 +61,8 @@
       <% end %>
 
     </div>
+     </div>
+
   </div>
 
 
@@ -60,26 +73,17 @@
             <%= image_tag @photo.album.user.avatar.url %>
         <% end %>
       </div>
-      <div class="username">
-        <%= link_to @photo.album.user.name, @photo.album.user %>
-      </div>
+      <!--<div class="username">-->
+        <!--<%= link_to @photo.album.user.name, @photo.album.user %>-->
+      <!--</div>-->
     </div>
 
     <ul class="tags">
-      <li>标签：</li>
       <% @photo.tags.each do |tag| %>
           <li class="tag"><%= link_to tag.name, search_tag_photos_path(:tag_name => tag.name) %></li>
       <% end %>
     </ul>
-    <div class="tool">
-      <% if current_user && current_user.favorite_photos.exists?(@photo.id) %>
-          <!--<%= link_to '收藏', ApplicationHelper::JAVASCRIPT, :id => 'favorite_photo', :photo_id => @photo.id %>-->
-          <span id="favorited_photo">已收藏</span>
-      <% else %>
-          <%= link_to '收藏', ApplicationHelper::JAVASCRIPT, :id => 'favorite_photo', :photo_id => @photo.id %>
-          <span id="favorited_photo" style="display:none">已收藏</span>
-      <% end %>
-    </div>
+
   </div>
 
 
