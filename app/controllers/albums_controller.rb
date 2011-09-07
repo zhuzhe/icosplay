@@ -1,6 +1,6 @@
 class AlbumsController < ApplicationController
 
-  before_filter :require_login, :only => [:create, :update, :me]
+  before_filter :require_login, :only => [:create, :update]
 
   def index
     @albums = Album.all
@@ -15,7 +15,7 @@ class AlbumsController < ApplicationController
   # GET /albums/1.xml
   def show
     @album = Album.find(params[:id])
-    @photo = @album.photos.first
+    @photos = @album.photos.paginate(:per_page => 20, :page => params[:page])
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @album }
@@ -25,12 +25,12 @@ class AlbumsController < ApplicationController
   def me
     @user = current_user
     @album = current_user.album
-
-    if @album.id.to_s == params[:id]
-      @photos = @album.photos
-    else
-      redirect_to login_path
-    end
+    @photos = @album.photos
+#    if @album.id.to_s == params[:id]
+#      @photos = @album.photos
+#    else
+#      redirect_to login_path
+#    end
   end
 
   # GET /albums/new

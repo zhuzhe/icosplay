@@ -3,8 +3,8 @@ $(function(){
     var $cities = $('.cities');
 
     $selected_city.toggle(function(){
-        $cities.show();
+        $cities.slideDown();
     }, function(){
-        $cities.hide();
+        $cities.slideUp();
     });
 });

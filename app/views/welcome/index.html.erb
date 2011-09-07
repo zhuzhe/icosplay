@@ -7,19 +7,5 @@
    <%= render :partial => 'share/canvas', :locals => {:photos => @top_photos, :title => '人气Cos美图'} %>
   </div>
 
-  <div class="right">
-     <div class="search_box">
-        <%= form_tag search_photos_path do %>
-            <%= text_field_tag 'tag_name' %>
-            <%= submit_tag 'Ｇｏ' %>
-        <% end %>
-      </div>
-      <ul class="pop_tags">
-        <% @pop_tags.each do |tag| %>
-            <li>
-              <%= link_to tag.name, by_tag_tag_photos_path(tag) %>
-            </li>
-        <% end %>
-      </ul>
-  </div>
+  <%= render :partial => 'welcome/right' %>
 </div>

@@ -31,7 +31,7 @@
     </div>
 
     <div class="me_tags">
-      <h3><%= h "我的标签 ： " %></h3>
+      <h3><%= h "个性标签 ： " %></h3>
       <ul>
         <% @user.tags.each do |tag| %>
             <li>
@@ -43,7 +43,7 @@
     </div>
 
     <div class="me">
-      <h3><%= link_to '> Me', me_album_path(@user.album) %> </h3>
+      <h3><%= link_to '> Me', album_path(@user.album) %> </h3>
       <ul>
         <% if @user.album %>
             <% @user.album.photos.each_with_index do |photo, index| %>

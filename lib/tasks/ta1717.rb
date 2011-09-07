@@ -122,7 +122,7 @@ class Ta1717
     album_ids.each_with_index do |album_id, index|
       username = "test_#{index}"
       next if User.find_by_name(username)
-      User.create(:name => username,
+      user = User.create(:name => username,
                   :sex => sex_ids[rand(2)],
                   :email => "icosplay_#{index}@icosplay.com",
                   :pwd => "test",
@@ -130,15 +130,19 @@ class Ta1717
                   :birthday => "19#{[8, 9][rand(2)]}#{rand(10)}/#{rand(12) + 1}/#{rand(28) + 1}",
                   :city_id => city_ids[rand(city_ids.size)]
       )
+
+      album = Album.find(album_id)
+      album.user = user
+      album.save
     end
   end
 
   def fix
-    Album.all.collect{|a| a.id}.each_with_index do |id, index|
-      user = User.find_by_name("test_#{index}")
-      album = Album.find(id)
-      album.user = user
-      album.save
-    end
+      User.find_each do |u|
+        if u.album.nil?
+          u.album = Album.create(:user_id => u.id)
+          u.save
+        end
+      end
   end
 end

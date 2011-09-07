@@ -1,0 +1,8 @@
+<div class="nav_second">
+  <h2><%= h title %></h2>
+
+  <div class="items">
+    <%= link_to '同城', city_path( current_user && current_user.city || City.find_by_name('北京')) %>
+    <%= link_to '人气', hot_users_path %>
+  </div>
+</div>

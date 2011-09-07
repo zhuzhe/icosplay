@@ -95,16 +95,16 @@ h2 {
     width: 100%;
 }
 
-#canvas .nav_second div {
+#canvas .nav_second h2 {
+    width: 200px;
+    float: left;
+}
+
+#canvas .nav_second .items {
     float: right;
     text-align: right;
     margin-right: 20px;
     font-weight: bold;
-}
-
-#canvas .nav_second h2 {
-    width: 200px;
-    float: left;
 }
 
 #canvas div {

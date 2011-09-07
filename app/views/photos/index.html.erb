@@ -1,27 +1,11 @@
 <%= content_for :head do %>
-    <%= stylesheet_link_tag 'gallery' %>
-    <%= javascript_include_tag 'gallery' %>
+    <%= stylesheet_link_tag 'index' %>
 <% end %>
 <div class="wrapper">
-  <div class="gallery_container">
-    <div class="thumb_container">
-      <div class="thumb_back">
-        <%= link_to '<', ApplicationHelper::JAVASCRIPT %>
-      </div>
-      <div class="thumbs">
-        <ul id="gallery_thumb">
-          <% @photos.each do |photo| %>
-              <li>
-                <%= image_tag photo.web_url %>
-              </li>
-          <% end %>
-        </ul>
-      </div>
 
-
-      <div class="thumb_forward">
-        <%= link_to '>', ApplicationHelper::JAVASCRIPT %>
-      </div>
-    </div>
+  <div class="main">
+   <%= render :partial => 'share/canvas', :locals => {:photos => @photos, :title => '更多Cos美图'} %>
   </div>
+
+  <%= render :partial => 'welcome/right' %>
 </div>

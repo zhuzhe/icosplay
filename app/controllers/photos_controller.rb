@@ -5,12 +5,8 @@ class PhotosController < ApplicationController
   before_filter :require_login, :only => [:favorite, :new, :upload]
 
   def index
-    @photos = Photo.paginate(:page => params[:page], :per_page => 25)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render :xml => @photos }
-    end
+     @photos = Photo.limit(100).paginate(:per_page => 20, :page => params[:page])
+      @pop_tags = Tag.limit(20)
   end
 
   # GET /photos/1
@@ -162,6 +158,16 @@ class PhotosController < ApplicationController
   def search
      @tag_name = params[:tag_name]
      @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 20)
+  end
+
+  def recommend
+    @photos = Photo.limit(100).paginate(:per_page => 20, :page => params[:page])
+    @pop_tags = Tag.limit(20)
+  end
+
+   def latest
+    @photos = Photo.order('created_at DESC').limit(100).paginate(:per_page => 20, :page => params[:page])
+    @pop_tags = Tag.limit(20)
   end
 
 end

@@ -1,17 +1,18 @@
 .select_city {
-    width: 650px;
-    height: 50px;
+    float: left;
+    z-index: 1000;
 }
 
 .select_city .selected_city {
-    font-size: 24px;
+    font-size: 18px;
     float: left;
 }
 
-.select_city ul.cities {
-    margin: 5px;
-    width: 500px;
-    float: left;
+ul.cities {
+    padding: 15px;
+    margin: 15px;
+    z-index: 1000;
+    clear: both;
 }
 
 .select_city ul.cities li {

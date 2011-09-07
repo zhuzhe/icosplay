@@ -15,16 +15,7 @@
             <%= link_to user.name, user %>
           </div>
           <div class="sex">
-            <%= h "#{user.sex_text}(#{user.age})" %>
-          </div>
-          <div class="city">
-            <%= h user.city.name %>
-          </div>
-          <div class="tags">
-            <span>个人标签：</span>
-            <% user.tags.each do |tag| %>
-                <%= link_to tag.name, by_tag_tag_users_path(tag) %>
-            <% end %>
+            <%= h "#{user.sex_text}(#{user.age}岁)" %>
           </div>
         </div>
       </li>

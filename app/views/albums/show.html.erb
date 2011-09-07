@@ -1,20 +1,45 @@
 <%= content_for :head do %>
-    <%= javascript_include_tag 'galleria/galleria-1.2.4.min' %>
-    <%= javascript_include_tag 'galleria/themes/classic/galleria.classic.min' %>
-    <%= javascript_include_tag 'album' %>
-
-    <%= stylesheet_link_tag 'album/album' %>
 <% end %>
-
 <div class="wrapper">
-  <div id="gallery">
-    <% @album.photos.each do |photo| %>
-        <%= image_tag photo.web_url %>
-    <% end %>
+  <% if current_user && current_user == @album.user %>
+      <%= link_to '上传你的cosplay', new_album_photo_path(@album) %>
+  <% end %>
+
+  <div class="main">
+    <div id="canvas">
+      <div class="nav_second">
+        <h2><%= h "#{@album.user.name}的Cosplay" %></h2>
+
+      </div>
+      <ul>
+        <% @photos.each do |photo| %>
+            <li>
+              <div>
+                <%= link_to photo do %>
+                    <%= image_tag photo.web_url %>
+                <% end %>
+              </div>
+            </li>
+        <% end %>
+      </ul>
+
+      <div class="pages">
+        <%= will_paginate @photos, :previous_label => '', :next_label => 'GO' %>
+      </div>
+    </div>
+  </div>
+
+    <div class="right">
+    <div class="visit_master">
+      <div class="avatar">
+        <%= link_to @album.user do %>
+            <%= image_tag @album.user.avatar.url %>
+        <% end %>
+      </div>
+      <div class="username">
+        <%= link_to @album.user.name, @album.user %>
+      </div>
+    </div>
+
   </div>
 </div>
-
-
-
-
-

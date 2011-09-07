@@ -1,11 +1,12 @@
 <%= content_for :head do %>
-    <%= stylesheet_link_tag 'user/hot' %>
+    <%= javascript_include_tag 'cities/show' %>
 <% end %>
 <div class="wrapper">
-   <div class="nav_second">
-      <%= link_to '同城' %>
-      <%= link_to '人气' %>
+  <div class="main">
+    <div id="canvas">
+      <%= render :partial => 'share/users_nav', :locals => {:title => '人气Coser'} %>
+      <%= render :partial => 'users/list', :locals => {:users => @users} %>
     </div>
-  <h2>人气Coser</h2>
-  <%= render :partial => 'users/list', :locals => {:users => @users} %>
+  </div>
+
 </div>

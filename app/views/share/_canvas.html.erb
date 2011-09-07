@@ -2,11 +2,11 @@
   <div class="nav_second">
     <h2><%= h title %></h2>
 
-    <div>
-      <%= link_to '人气' %>
-      <%= link_to '推荐' %>
-      <%= link_to '最新' %>
-      <%= link_to '更多' %>
+    <div class="items">
+      <%= link_to '人气', root_path %>
+      <%= link_to '推荐', recommend_photos_path %>
+      <%= link_to '最新', latest_photos_path %>
+      <%= link_to '更多', photos_path %>
     </div>
   </div>
   <ul>

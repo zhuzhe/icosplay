@@ -85,6 +85,8 @@ Icosplay::Application.routes.draw do
       get 'search_tag'
       post 'upload'
       post 'search'
+      get 'recommend'
+      get 'latest'
     end
   end
 

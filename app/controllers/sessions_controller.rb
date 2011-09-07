@@ -7,7 +7,6 @@ class SessionsController < ApplicationController
      @user = User.first(:conditions => {:email => params[:email], :pwd => params[:pwd]})
      if @user
        session[:user_id] = @user.id
-
        redirect_to(session[:back_url] ? session[:back_url] : root_path)
      else
        redirect_to login_path
