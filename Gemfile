@@ -22,6 +22,7 @@ gem 'will_paginate', '~> 3.0.pre2'
 # Bundle the extra gems:
 # gem 'bj'
 gem 'nokogiri'
+gem 'mini_magick'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem ' aws-s3', :require => 'aws/s3'
 
