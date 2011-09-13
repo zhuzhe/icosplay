@@ -101,6 +101,8 @@
     <orderEntry type="library" scope="PROVIDED" name="[gem] diff-lcs (v1.1.2, /usr/local/lib/ruby/gems/1.8/gems/diff-lcs-1.1.2)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] polyglot (v0.3.1, /usr/local/lib/ruby/gems/1.8/gems/polyglot-0.3.1)" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="[gem] rack-test (v0.5.7, /usr/local/lib/ruby/gems/1.8/gems/rack-test-0.5.7)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] mini_magick (v3.3, /usr/local/lib/ruby/gems/1.8/gems/mini_magick-3.3)" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="[gem] subexec (v0.1.0, /usr/local/lib/ruby/gems/1.8/gems/subexec-0.1.0)" level="application" />
   </component>
 </module>
 

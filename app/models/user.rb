@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
   MALE = 0
   FEMALE = 1
 
+  SHADOW = 0
+  REAL = 1
+
   def age
      Time.now.year - self.birthday.year
   end

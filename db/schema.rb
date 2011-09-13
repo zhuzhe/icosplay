@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817075940) do
+ActiveRecord::Schema.define(:version => 20110913090319) do
 
   create_table "albums", :force => true do |t|
     t.string   "name"
@@ -133,6 +133,7 @@ ActiveRecord::Schema.define(:version => 20110817075940) do
     t.integer  "avatar_id"
     t.date     "birthday"
     t.integer  "city_id"
+    t.integer  "user_type"
   end
 
   create_table "users_tags", :id => false, :force => true do |t|
