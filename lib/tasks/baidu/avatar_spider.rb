@@ -61,7 +61,7 @@ module BaiDu
 
     def crawl_other_avatar
       OTHER_URLS.each do |other_url|
-        (1..1000).each do |num|
+        (260..1000).each do |num|
           url = "#{other_url}/#{num}.jpg"
           begin
             open(url)

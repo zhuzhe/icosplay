@@ -137,6 +137,20 @@ class Ta1717
     end
   end
 
+  def download_cosplay_images
+    Photo.find_each do |p|
+      next if p.web_url.nil?
+      new_file_path = p.id2(Pathname.new("/home/belen/Pictures/cosplay")) + '.jpg'
+      next if File.exist?(new_file_path)
+      secure_open(p.web_url) do |f|
+        File.open(new_file_path, 'w') do |new_file|
+          new_file.write f.read
+        end
+        puts "#{p.id}: already download"
+      end
+    end
+  end
+
   def fix
       User.find_each do |u|
         if u.album.nil?
