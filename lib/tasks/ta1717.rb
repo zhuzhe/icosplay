@@ -135,7 +135,7 @@ class Ta1717
       album.user = user
       album.save
     end
-  end
+  end     
 
   def download_cosplay_images
     Photo.find_each do |p|
