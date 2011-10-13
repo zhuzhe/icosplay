@@ -2,6 +2,6 @@
 db/*.sqlite3
 log/*.log
 tmp/
-public/images/cos/origin/
-public/images/cos/thumbs/
+public/images/cos/origin
+public/images/cos/thumbs
 .idea
