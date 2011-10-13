@@ -4,3 +4,4 @@ log/*.log
 tmp/
 public/images/cos/origin
 public/images/cos/thumbs
+.idea/workspace.xml
