@@ -7,7 +7,7 @@
     <% @photos.each do |photo| %>
         <li>
           <%= link_to photo do %>
-              <%= image_tag photo.web_url %>
+              <%= image_tag photo.id2thumb_relative_path %>
           <% end %>
         </li>
     <% end %>
