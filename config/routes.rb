@@ -41,14 +41,15 @@ Icosplay::Application.routes.draw do
     collection do
       get 'hot'
       get 'search_tag'
-      get 'masters'
-      get 'followers'
+     
     end
 
     member do
       get 'favorite'
       get 'unfavorite'
       get 'home'
+      get 'masters'
+      get 'followers'
     end
 
     resources :photos do

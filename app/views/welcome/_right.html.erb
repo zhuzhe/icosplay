@@ -1,14 +1,14 @@
 <div class="right">
      <div class="search_box">
-        <%= form_tag search_photos_path do %>
+        <%= form_tag search_tag_photos_path, :method => "get" do %>
             <%= text_field_tag 'tag_name' %>
             <%= submit_tag 'Ｇｏ' %>
         <% end %>
       </div>
       <ul class="pop_tags">
-        <% @pop_tags.each do |tag| %>
+        <% tags.each do |tag| %>
             <li>
-              <%= link_to tag.name, by_tag_tag_photos_path(tag) %>
+              <%= link_to tag.name, search_tag_photos_path(:tag_name => tag.name) %>
             </li>
         <% end %>
       </ul>

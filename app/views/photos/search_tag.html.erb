@@ -12,7 +12,7 @@
             <li>
               <div>
                 <%= link_to photo do %>
-                    <%= image_tag photo.web_url %>
+                    <%= image_tag photo.id2thumb_relative_path %>
                 <% end %>
               </div>
             </li>
@@ -27,20 +27,8 @@
 
   </div>
 
-  <div class="right">
-    <div class="search_box">
-      <%= form_tag search_photos_path do %>
-          <%= text_field_tag 'tag_name' %>
-          <%= submit_tag 'Ｇｏ' %>
-      <% end %>
-    </div>
-    <ul class="pop_tags">
-      <% @relative_tags.each do |tag| %>
-          <li>
-            <%= link_to tag.name, by_tag_tag_photos_path(tag) %>
-          </li>
-      <% end %>
-    </ul>
+  <%= render :partial => "welcome/right", :locals => {:tags => @relative_tags}%>
+
   </div>
 
 </div>

@@ -43,7 +43,7 @@
     </div>
 
     <div class="me">
-      <h3><%= link_to '> Me', album_path(@user.album) %> </h3>
+      <h3><%= link_to '> 收录', album_path(@user.album) %> </h3>
       <ul>
         <% if @user.album %>
             <% @user.album.photos.each_with_index do |photo, index| %>
@@ -64,14 +64,11 @@
   <div class="right">
     <ul>
       <li>
-        <%= link_to "> 喜欢", masters_users_path %>
+        <%= link_to "> 喜欢", masters_user_path %>
       </li>
       <li>
-        <%= link_to "> 粉丝", followers_users_path %>
-      </li>
-      <li>
-        <%= link_to "> 收藏", favorited_user_photos_path(@user) %>
-      </li>
+        <%= link_to "> 粉丝", followers_user_path %>
+      </li>  
     </ul>
 
   </div>

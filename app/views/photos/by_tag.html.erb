@@ -1,15 +1,18 @@
 <%= content_for :head do %>
     <%= stylesheet_link_tag 'photo/search_tag' %>
     <% end %>
-<div class="wrapper">
-  <h2>标签：<span><%= @tag.name%></span></h2>
-  <ul class="photos">
-    <% @photos.each do |photo| %>
-        <li>
-          <%= link_to photo do %>
-              <%= image_tag photo.id2thumb_relative_path %>
-          <% end %>
-        </li>
-    <% end %>
-  </ul>
+<div class="wrapper"> 
+    <div class="main"> 
+    <h2>标签：<span><%= @tag.name%></span></h2>
+      <ul class="photos">
+        <% @photos.each do |photo| %>
+            <li>
+              <%= link_to photo do %>
+                  <%= image_tag photo.id2thumb_relative_path %>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  
 </div>

@@ -13,6 +13,20 @@ class InitDB
       end
       puts "#{u.id}:#{u.avatar(true).id}"
     end
+  end    
+  
+  def assign_relations 
+    user_ids = Boy.all.collect{ |u| u.id }
+    Boy.find_each do |u|  
+        master_ids = []
+        0.upto(rand(10)) do |i|
+           master_id = user_ids[rand(user_ids.length)]
+           next if master_ids.include?(master_id)
+           master_ids << master_id  
+        end
+        u.master_ids = master_ids
+        u.save
+    end
   end
 
 

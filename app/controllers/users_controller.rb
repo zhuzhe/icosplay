@@ -108,12 +108,12 @@ class UsersController < ApplicationController
   end
 
   def masters
-    @user = current_user
+    @user = User.find(params[:id])
     @masters = @user.masters
   end
 
   def followers
-    @user = current_user
+    @user = User.find(params[:id])
     @followers = @user.followers
   end
 
