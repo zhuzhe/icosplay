@@ -75,6 +75,18 @@ module BaiDu
       end
     end
 
+    def download_images
+      Avatar.find_each do |avatar|
+        next if avatar.url.match(/^http/).nil?
+        secure_open(avatar.url) do |f|
+          File.open(avatar.id2(Pathname.new("/home/belen/Pictures/avatar")) + ".jpg", "w") do |new_file|
+            new_file.write f.read
+          end
+        end
+        puts "#{avatar.id} : already download"
+      end
+    end
+
   end
 
 end

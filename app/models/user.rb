@@ -29,13 +29,17 @@ class User < ActiveRecord::Base
   REAL = 1
 
   def age
-     Time.now.year - self.birthday.year
+    if self.birthday
+      Time.now.year - self.birthday.year
+    end
   end
 
   def sex_text
     case self.sex
-      when MALE then '男'
-      when FEMALE then '女'
+      when MALE then
+        '男'
+      when FEMALE then
+        '女'
     end
   end
 

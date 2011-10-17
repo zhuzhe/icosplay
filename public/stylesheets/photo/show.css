@@ -6,6 +6,12 @@
    padding: 0 20px;
 }
 
+.photo .img {
+    width: 510px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
 .visit_master {
     margin-bottom: 10px;
 }

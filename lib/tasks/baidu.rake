@@ -16,4 +16,8 @@ namespace :baidu do
   task :crawl_other_avatar => :environment do
     BaiDu::AvatarSpider.new.crawl_other_avatar
   end
+
+  task :download_images => :environment do
+    BaiDu::AvatarSpider.new.download_images
+  end
 end

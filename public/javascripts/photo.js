@@ -21,5 +21,10 @@ $(function() {
         var $this = $(this);
         Icosplay.favorite_photo($this.attr('photo_id'), favorite_photo_callback);
         return false;
-    })
+    });
+
+    var resize_photo_box = function() {
+        var $photo_box = $('.photo');
+
+    };
 });
