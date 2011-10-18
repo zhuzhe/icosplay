@@ -1,0 +1,57 @@
+h1.title {
+    margin-bottom: 50px;
+}
+
+.form_box {
+    float: left;
+    width: 400px;
+}
+
+.field {
+    margin: 15px;
+
+}
+
+.field label {
+    text-align: right;
+    line-height: 30px;
+    font-size: 14px;
+    margin-right: 15px;
+    vertical-align: middle;
+    width: 60px;
+    display: inline-block;
+}
+
+.field label.sex {
+    text-align: left;
+    width: 14px;
+    margin-right: 0;
+}
+
+.field input {
+    border: 1px solid #C9C9C9;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 14px;
+    padding: 5px;
+    width: 200px;
+    vertical-align: middle;
+}
+
+.actions {
+    width: 50%;
+    margin-left: 93px;
+}
+
+.actions input {
+    border: 1px solid #B9B9B9;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 6px 26px;
+    color: #999999;
+}
+
+.aside {
+    float: right;
+    margin: 100px 200px 0 0;
+}

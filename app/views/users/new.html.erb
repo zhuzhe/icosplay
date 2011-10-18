@@ -1,49 +1,56 @@
+<%= content_for :head do %>
+    <%= stylesheet_link_tag "user/new" %>
+<% end %>
 <div class="wrapper">
-  <%= form_for(@user) do |f| %>
-      <div class="field">
+  <h1 class="title">欢迎加入Icosplay</h1>
+  <div class="form_box">
+    <%= form_for(@user) do |f| %>
+
         <div class="field">
           <%= f.label :email, "邮箱" %>
-          <br/>
           <%= f.text_field :email %>
         </div>
-        <%= f.label :name, '昵称' %>
-        <br/>
-        <%= f.text_field :name %>
-      </div>
-      <div class="field">
-        <%= f.label :sex, "性别" %>
-        <%= f.select :sex, [["男", 0], ["女", 1]] %>
-      </div>
+        <div class="field">
+          <%= f.label :name, '昵称' %>
+          <%= f.text_field :name %>
+        </div>
+        <div class="field">
+          <%= f.label :sex, "性别" %>
+          <%= f.label :sex, "男", :class => "sex" %>
+          <%= f.radio_button :sex, User::MALE %>
+          <%= f.label :sex, "女", :class => "sex" %>
+          <%= f.radio_button :sex, User::FEMALE %>
 
-      <div class="filed">
-        <%= f.label :age, "年龄" %>
-        <%= select_tag :age, options_for_select((13..30).collect{|i|[i, i]}) %>
-      </div>
+        </div>
 
-      <div class="field">
-        <%= f.label :city, '常居住地' %>
-        <%= f.select :city_id, City.all.collect{|c|[c.name, c.id]} %>
-      </div>
+        <div class="field">
+          <%= f.label :age, "年龄" %>
+          <%= select_tag :age, options_for_select((13..30).collect { |i| [i, i] }) %>
+        </div>
 
-      <div class="field">
-        <%= f.label :tags, '个性标签' %>
-        <%= text_field_tag :tags %>
-      </div>
+        <div class="field">
+          <%= f.label :city, '常居住地' %>
+          <%= f.select :city_id, City.all.collect { |c| [c.name, c.id] } %>
+        </div>
 
-      <div class="field">
-        <%= f.label :pwd, "密码" %>
-        <br/>
-        <%= f.password_field :pwd %>
-      </div>
-      <div class="field">
-        <%= f.label :pwd_confirmation, "重复密码" %>
-        <br/>
-        <%= f.password_field :pwd %>
-      </div>
-      <div class="actions">
-        <%= f.submit "注册" %>
-      </div>
-  <% end %>
+        <div class="field">
+          <%= f.label :pwd, "密码" %>
+          <%= f.password_field :pwd %>
+        </div>
+        <div class="field">
+          <%= f.label :pwd_confirmation, "重复密码" %>
+          <%= f.password_field :pwd %>
+        </div>
+        <div class="actions">
+          <%= f.submit "注册" %>
+        </div>
+    <% end %>
+  </div>
+
+  <div class="aside">
+      &gt; 已经拥有Icosplay帐号?
+      <%= link_to "直接登陆", login_path %>
+  </div>
 
 
 </div>

@@ -29,5 +29,31 @@ class InitDB
     end
   end
 
+  def assign_avatar_url
+    Avatar.find_each do |avatar|
+      next if avatar.url.match(/^http/).nil?
+      if File.exist?(avatar.id2(Pathname.new("/home/belen/Pictures/avatar")) + ".jpg")
+        avatar.url = avatar.id2relative_path
+      else
+        avatar.url = Avatar::DEFAULT
+      end
+      avatar.save
+      puts "#{avatar.id} : #{avatar.url}"
+    end
+  end
+
+  def change_default_url
+    Avatar.find_each do |avatar|
+      if avatar.url.match("avatars/default.jpg")
+        avatar.uploaded =  false
+        avatar.url = Avatar::DEFAULT
+      else
+        avatar.uploaded= true
+      end
+      avatar.save
+      puts "#{avatar.url}"
+    end
+  end
+
 
 end

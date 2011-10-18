@@ -20,4 +20,6 @@ namespace :baidu do
   task :download_images => :environment do
     BaiDu::AvatarSpider.new.download_images
   end
+
+
 end

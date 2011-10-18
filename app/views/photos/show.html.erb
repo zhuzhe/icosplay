@@ -19,7 +19,7 @@
       </div>
       <div class="img">
         <%= link_to next_album_photo_path(@photo.album, @photo) do %>
-            <%= image_tag @photo.web_url || @photo.uri %>
+            <%= image_tag @photo.id2relative_path %>
         <% end %>
       </div>
     </div>
