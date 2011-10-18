@@ -13,9 +13,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    if @user.id == current_user_id
-       redirect_to home_user_path(@user)
-    end
   end
 
   def new
@@ -33,13 +30,13 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(params[:user])
-    @user.tag_ids = Tag.create_from_text(params[:tags])
-    @user.avatar = Avatar.create(:url => '/images/avatars/default.jpg')
+    @user.avatar = Avatar.create(:url => Avatar::DEFAULT)
     @user.birthday = Date.new(Time.now.year - params[:age].to_i)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to profile_path(:id => @user.id)
+      redirect_to root_path
     else
+      puts @user.errors.inspect
       redirect_to register_path
     end
   end

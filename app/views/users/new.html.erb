@@ -1,4 +1,5 @@
 <%= content_for :head do %>
+    <%= stylesheet_link_tag "form" %>
     <%= stylesheet_link_tag "user/new" %>
 <% end %>
 <div class="wrapper">
@@ -16,7 +17,7 @@
         </div>
         <div class="field">
           <%= f.label :sex, "性别" %>
-          <%= f.label :sex, "男", :class => "sex" %>
+          <%= f.label :sex, "男", :checked => true,:class => "sex" %>
           <%= f.radio_button :sex, User::MALE %>
           <%= f.label :sex, "女", :class => "sex" %>
           <%= f.radio_button :sex, User::FEMALE %>
@@ -39,7 +40,7 @@
         </div>
         <div class="field">
           <%= f.label :pwd_confirmation, "重复密码" %>
-          <%= f.password_field :pwd %>
+          <%= f.password_field :pwd_confirmation %>
         </div>
         <div class="actions">
           <%= f.submit "注册" %>
@@ -49,7 +50,7 @@
 
   <div class="aside">
       &gt; 已经拥有Icosplay帐号?
-      <%= link_to "直接登陆", login_path %>
+      <%= link_to "立即登陆", login_path %>
   </div>
 
 

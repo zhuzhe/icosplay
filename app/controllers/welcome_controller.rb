@@ -1,9 +1,9 @@
 class WelcomeController < ApplicationController
+
+  before_filter :get_pop_tags
+
   def index
-#    @hot_users = User.where("level >= ?", 5).limit(12)
-#    @top_photos = Photo.order('count DESC, id DESC').where("created_at > 2011/7/8").paginate(:per_page => 20, :page => params[:page])
-    @top_photos = Photo.paginate(:per_page => 20, :page => params[:page])
-    @pop_tags = Tag.where(:level => 0).limit(15)
+    @top_photos = Photo.get_hots.paginate(:per_page => 20, :page => params[:page])
     @current_user = current_user
   end
 end

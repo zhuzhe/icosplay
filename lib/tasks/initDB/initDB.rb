@@ -55,5 +55,21 @@ class InitDB
     end
   end
 
+  def assign_photo_count
+    Photo.find_each do |photo|
+      photo.count = rand(1000)
+      photo.save
+      puts photo.count
+    end
+  end
+
+  def assign_tag_level
+    Tag.find_each do |tag|
+      tag.level = rand(6)
+      tag.save
+      puts tag.level
+    end
+  end
+
 
 end

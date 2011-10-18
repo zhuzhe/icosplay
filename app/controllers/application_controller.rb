@@ -8,17 +8,15 @@ class ApplicationController < ActionController::Base
   FAIL_JSON = {:status => FAIL}
 
   def require_login
-     unless login?
-       respond_to do |format|
-         format.html {redirect_to login_path }
-         format.json {render :json => FAIL_JSON }
-       end
-     end
+    unless login?
+      respond_to do |format|
+        format.html { redirect_to login_path }
+        format.json { render :json => FAIL_JSON }
+      end
+    end
   end
 
   def login?
-    puts "==========="
-    puts session[:user_id]
     true if session[:user_id]
   end
 
@@ -30,5 +28,10 @@ class ApplicationController < ActionController::Base
 
   def current_user_id
     session[:user_id]
+  end
+
+
+  def get_pop_tags
+    @pop_tags = Tag.limit(20).order("rand()")
   end
 end

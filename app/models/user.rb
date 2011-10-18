@@ -1,7 +1,14 @@
 class User < ActiveRecord::Base
-  validates_presence_of :name, :pwd, :email, :sex
-  validates_confirmation_of :pwd
-  validates_inclusion_of :sex, :in => 0..2
+  validates_presence_of :name, :message => "请输入昵称"
+  validates_presence_of :pwd, :message => "请输入密码"
+  validates_presence_of :email, :message => "请输入邮箱"
+  validates_presence_of :sex, :message => "请选择性别"
+  validates_presence_of :birthday, :message => "请选择年龄"
+  validates :pwd, :confirmation => {:message => "密码不相同"}
+  validates :pwd_confirmation, :presence => {:message => "请输入重复密码"}
+  validates_inclusion_of :sex, :in => 0..2, :message => "请选择正确的性别"
+  validates :email, :uniqueness => {:message => "此邮箱已被占用"}
+
 
   has_one :member
   has_one :album

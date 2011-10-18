@@ -27,7 +27,7 @@
 
       <h3 class="title">评论&nbsp;&nbsp;· · · · · ·&nbsp;</h3>
       <ul>
-        <% @photo.comments.each do |comment| %>
+        <% @comments.each do |comment| %>
             <li class="comment">
               <div class="avatar">
                 <%= link_to comment.user do %>
@@ -72,21 +72,22 @@
         <%= link_to @photo.album.user do %>
             <%= image_tag @photo.album.user.avatar.url %>
         <% end %>
+        <div>
+          <%= link_to @photo.album.user.name, @photo.album.user%>
+        </div>
+
       </div>
       <!--<div class="username">-->
       <!--<%= link_to @photo.album.user.name, @photo.album.user %>-->
       <!--</div>-->
     </div>
-
+    标签:
     <ul class="tags">
+
       <% @photo.tags.each do |tag| %>
           <li class="tag"><%= link_to tag.name, search_tag_photos_path(:tag_name => tag.name) %></li>
       <% end %>
     </ul>
-
-    <div class="me">
-      <%= link_to ">Me", @photo.album.user %>
-    </div>
 
   </div>
 

@@ -1,27 +1,22 @@
 class PhotosController < ApplicationController
-  # GET /photos
-  # GET /photos.xml
 
   before_filter :require_login, :only => [:favorite, :new, :upload]
+  before_filter :get_pop_tags, :only => [:recommend, :latest, :index]
 
   def index
-     @photos = Photo.limit(100).paginate(:per_page => 20, :page => params[:page])
-      @pop_tags = Tag.limit(20)
+    @photos = Photo.limit(100).paginate(:per_page => 20, :page => params[:page])
+    @pop_tags = Tag.limit(20)
   end
 
-  # GET /photos/1
-  # GET /photos/1.xml
   def show
     @photo = Photo.find(params[:id])
-
+    @comments = Comment.where(:photo_id => @photo.id).order("created_at DESC")
     respond_to do |format|
       format.html # show.html.erb
       format.xml { render :xml => @photo }
     end
   end
 
-  # GET /photos/new
-  # GET /photos/new.xml
   def new
     @photo = Photo.new
     @user = current_user
@@ -32,13 +27,10 @@ class PhotosController < ApplicationController
     end
   end
 
-  # GET /photos/1/edit
   def edit
     @photo = Photo.find(params[:id])
   end
 
-  # POST /photos
-  # POST /photos.xml
   def create
     @photo = Photo.new(params[:photo])
 
@@ -83,26 +75,26 @@ class PhotosController < ApplicationController
 
   def upload
 
-      uploaded_io = params[:photo]
-      file_suffix = uploaded_io.original_filename.split('.').last
-      @photo = Photo.create(:album_id => current_user.album.id, :description => params[:description])
-      @photo.web_url = @photo.uri = @photo.id2relative_path + '.' + file_suffix
+    uploaded_io = params[:photo]
+    @photo = Photo.create(:album_id => current_user.album.id, :description => params[:description])
 
-      File.open(@photo.id2path + '.' + file_suffix, 'w') do |file|
-        file.write(uploaded_io.read)
+    f= File.open(@photo.id2path, 'w') do |file|
+      file.write(uploaded_io.read)
+    end
+
+    @photo.create_thumb
+
+    @photo.tag_ids = params[:tag].split(' ').inject([]) do |all, tag_name|
+      if ((tag = Tag.find_by_name(tag_name)).nil?)
+        tag = Tag.create(:name => tag_name)
       end
+      all << tag.id
+    end
 
-      @photo.tag_ids =  params[:tag].split(' ').inject([]) do |all, tag_name|
-        if ((tag = Tag.find_by_name(tag_name)).nil?)
-           tag = Tag.create(:name => tag_name)
-        end
-        all << tag.id
-      end
-
-      @photo.save
+    @photo.save
 
 
-      redirect_to photo_path(@photo)
+    redirect_to photo_path(@photo)
   end
 
   def next
@@ -123,9 +115,9 @@ class PhotosController < ApplicationController
   end
 
   def search_tag
-      @tag_name = params[:tag_name]
-      @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 30)
-      @relative_tags = Tag.limit(10)
+    @tag_name = params[:tag_name]
+    @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 30)
+    @relative_tags = Tag.limit(10)
   end
 
   def by_tag
@@ -156,18 +148,17 @@ class PhotosController < ApplicationController
   end
 
   def search
-     @tag_name = params[:tag_name]
-     @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 20)
+    @tag_name = params[:tag_name]
+    @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 20)
   end
 
   def recommend
-    @photos = Photo.limit(100).paginate(:per_page => 20, :page => params[:page])
-    @pop_tags = Tag.limit(20)
+    @photos = Photo.get_recommends.paginate(:per_page => 20, :page => params[:page])
   end
 
-   def latest
+  def latest
     @photos = Photo.order('created_at DESC').limit(100).paginate(:per_page => 20, :page => params[:page])
-    @pop_tags = Tag.limit(20)
   end
+
 
 end

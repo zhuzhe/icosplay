@@ -16,34 +16,40 @@
         <%= h "性别 ：  #{@user.sex_text}" %>
       </div>
       <div><%= h "年龄 ：   #{@user.age}" %></div>
-      <div><%= h "城市 ：  " %> <%= link_to @user.city.name %>    </div>
+      <div><%= h "城市 ：  " %> <%= link_to @user.city.name, @user.city %>    </div>
 
     </div>
 
-    <div class="tool">
-      <% if login? && current_user.masters.exists?(@user.id) %>
-          <%= link_to '取消关注', "javascript:void(0)", :id => 'unfavorite', :user_id => @user.id %>
-          <%= link_to '关注', "javascript:void(0)", :id => 'favorite', :user_id => @user.id, :style => 'display: none' %>
-      <% else %>
-          <%= link_to '取消关注', "javascript:void(0)", :id => 'unfavorite', :user_id => @user.id, :style => 'display: none' %>
-          <%= link_to '关注', "javascript:void(0)", :id => 'favorite', :user_id => @user.id %>
-      <% end %>
-    </div>
 
-    <div class="me_tags">
-      <h3><%= h "个性标签 ： " %></h3>
-      <ul>
-        <% @user.tags.each do |tag| %>
-            <li>
-              <%= link_to tag.name, by_tag_tag_users_path(tag) %>
-            </li>
-        <% end %>
-      </ul>
+    <% unless login? && current_user == @user %>
+        <div class="tool">
+          <% if login? && current_user.masters.exists?(@user.id) %>
+              <%= link_to '取消关注', "javascript:void(0)", :id => 'unfavorite', :user_id => @user.id %>
+              <%= link_to '关注', "javascript:void(0)", :id => 'favorite', :user_id => @user.id, :style => 'display: none' %>
+          <% else %>
+              <%= link_to '取消关注', "javascript:void(0)", :id => 'unfavorite', :user_id => @user.id, :style => 'display: none' %>
+              <%= link_to '关注', "javascript:void(0)", :id => 'favorite', :user_id => @user.id %>
+          <% end %>
+        </div>
+    <% end %>
 
-    </div>
+
+    <!--<div class="me_tags">-->
+    <!--<h3><%= h "个性标签 ： " %></h3>-->
+    <!--<ul>-->
+    <!--
+    <% @user.tags.each do |tag| %>-->
+        <!--<li>-->
+        <!--<%= link_to tag.name, by_tag_tag_users_path(tag) %>-->
+        <!--</li>-->
+        <!--
+    <% end %>-->
+    <!--</ul>-->
+
+    <!--</div>-->
 
     <div class="me">
-      <h3><%= link_to '> 收录', album_path(@user.album) %> </h3>
+      <h2><%= link_to '> 收录', album_path(@user.album), :style => "font-size: 16px" %> </h2>
       <ul>
         <% if @user.album %>
             <% @user.album.photos.each_with_index do |photo, index| %>
@@ -58,7 +64,7 @@
       </ul>
     </div>
 
-    <%= render :partial => 'users/message_container'  %>
+    <%= render :partial => 'users/message_container' %>
   </div>
 
   <div class="right">
@@ -68,7 +74,7 @@
       </li>
       <li>
         <%= link_to "> 粉丝", followers_user_path %>
-      </li>  
+      </li>
     </ul>
 
   </div>

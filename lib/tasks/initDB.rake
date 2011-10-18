@@ -17,4 +17,12 @@ namespace :initDB do
   task :change_default_url => :environment do
     InitDB.new.change_default_url
   end
+
+  task :assign_photo_count => :environment do
+    InitDB.new.assign_photo_count
+  end
+
+  task :assign_tag_level => :environment do
+    InitDB.new.assign_tag_level
+  end
 end

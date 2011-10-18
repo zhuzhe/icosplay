@@ -1,15 +1,16 @@
 <%= content_for :head do %>
 <% end %>
 <div class="wrapper">
-  <% if current_user && current_user == @album.user %>
-      <%= link_to '上传你的cosplay', new_album_photo_path(@album) %>
-  <% end %>
+
 
   <div class="main">
+
     <div id="canvas">
       <div class="nav_second">
         <h2><%= h "#{@album.user.name}的Cosplay" %></h2>
-
+        <% if current_user && current_user == @album.user %>
+            <%= link_to '上传你的cosplay', new_album_photo_path(@album) %>
+        <% end %>
       </div>
       <ul>
         <% @photos.each do |photo| %>
@@ -29,14 +30,14 @@
     </div>
   </div>
 
-    <div class="right">
+  <div class="right">
     <div class="visit_master">
       <div class="avatar">
         <%= link_to @album.user do %>
             <%= image_tag @album.user.avatar.url %>
         <% end %>
       </div>
-      <div class="username">
+      <div class="username" style="text-align: middle">
         <%= link_to @album.user.name, @album.user %>
       </div>
     </div>
