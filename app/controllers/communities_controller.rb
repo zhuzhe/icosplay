@@ -43,56 +43,22 @@ class CommunitiesController < ApplicationController
   # POST /communities
   # POST /communities.xml
   def create
-    if login?
-      @community = Community.new(params[:community])
-      @user = current_user
-      if @user.community.nil?
-        if @community.save
-          @user.update_attributes({:community_id => @community.id, :level => User::FOUNDER})
-          redirect_to @community
-        else
-          render :action => "new"
-        end
-      else
-          redirect_to @user
-      end
-    end
-
   end
 
   # PUT /communities/1
   # PUT /communities/1.xml
   def update
-    @community = Community.find(params[:id])
-
-    respond_to do |format|
-      if @community.update_attributes(params[:community])
-        format.html { redirect_to(@community, :notice => 'Community was successfully updated.') }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @community.errors, :status => :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /communities/1
   # DELETE /communities/1.xml
-  def destroy
-#    @community = Community.find(params[:id])
-#    @community.destroy
-#
-#    respond_to do |format|
-#      format.html { redirect_to(communities_url) }
-#      format.xml  { head :ok }
-#    end
+  def destroy 
   end
 
   def choice
 
   end
 
-  def me
-    @community = current_user.community
+  def me  
   end
 end

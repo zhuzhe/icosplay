@@ -31,46 +31,13 @@ class PhotosController < ApplicationController
     @photo = Photo.find(params[:id])
   end
 
-  def create
-    @photo = Photo.new(params[:photo])
-
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to(@photo, :notice => 'Photo was successfully created.') }
-        format.xml { render :xml => @photo, :status => :created, :location => @photo }
-      else
-        format.html { render :action => "new" }
-        format.xml { render :xml => @photo.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /photos/1
-  # PUT /photos/1.xml
-  def update
-    @photo = Photo.find(params[:id])
-
-    respond_to do |format|
-      if @photo.update_attributes(params[:photo])
-        format.html { redirect_to(@photo, :notice => 'Photo was successfully updated.') }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @photo.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /photos/1
-  # DELETE /photos/1.xml
+  def create 
+  end  
+  
+  def update 
+  end   
+  
   def destroy
-    @photo = Photo.find(params[:id])
-    @photo.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(photos_url) }
-      format.xml { head :ok }
-    end
   end
 
   def upload
@@ -135,10 +102,7 @@ class PhotosController < ApplicationController
       end
     else
       current_user.favorite_photos << @photo
-      render :json => SUCCESS_JSON
-#      respond_to do |format|
-#        format.json {render :json => SUCCESS_JSON}
-#      end
+      render :json => SUCCESS_JSON  
     end
   end
 

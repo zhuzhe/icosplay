@@ -60,13 +60,7 @@ class AvatarsController < ApplicationController
 
   # DELETE /avatars/1
   # DELETE /avatars/1.xml
-  def destroy
-    @avatar = Avatar.find(params[:id])
-    @avatar.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(avatars_url) }
-      format.xml { head :ok }
-    end
-  end
+  def destroy 
+  end 
+  
 end
