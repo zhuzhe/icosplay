@@ -3,12 +3,7 @@ class UsersController < ApplicationController
   before_filter :require_login, :only => [:favorite, :unfavorite, :edit, :update]
 
   def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml { render :xml => @users }
-    end
+    @users = User.all 
   end
 
   def show
@@ -16,12 +11,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @user }
-    end
+    @user = User.new  
   end
 
   def edit
@@ -39,31 +29,7 @@ class UsersController < ApplicationController
       puts @user.errors.inspect
       redirect_to register_path
     end
-  end
-
-  def update
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to(profile_path(:id => @user.id), :notice => 'User was successfully updated.') }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml { head :ok }
-    end
-  end
+  end  
 
   def hot
     @users = User.order("rand()").paginate(:per_page => 20, :page => params[:page])
@@ -112,13 +78,6 @@ class UsersController < ApplicationController
   def followers
     @user = User.find(params[:id])
     @followers = @user.followers
-  end
-
-  def add_tag_for_register
-
-  end
-
-  def home
-    @user = current_user
-  end
+  end  
+  
 end

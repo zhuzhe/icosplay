@@ -10,71 +10,16 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
-    @comments = Comment.where(:photo_id => @photo.id).order("created_at DESC")
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @photo }
-    end
+    @comments = Comment.where(:photo_id => @photo.id).order("created_at DESC") 
   end
 
   def new
     @photo = Photo.new
     @user = current_user
-    @pop_tags = Tag.limit(10)
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @photo }
-    end
-  end
-
-  def edit
-    @photo = Photo.find(params[:id])
-  end
-
-  def create
-    @photo = Photo.new(params[:photo])
-
-    respond_to do |format|
-      if @photo.save
-        format.html { redirect_to(@photo, :notice => 'Photo was successfully created.') }
-        format.xml { render :xml => @photo, :status => :created, :location => @photo }
-      else
-        format.html { render :action => "new" }
-        format.xml { render :xml => @photo.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /photos/1
-  # PUT /photos/1.xml
-  def update
-    @photo = Photo.find(params[:id])
-
-    respond_to do |format|
-      if @photo.update_attributes(params[:photo])
-        format.html { redirect_to(@photo, :notice => 'Photo was successfully updated.') }
-        format.xml { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml { render :xml => @photo.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /photos/1
-  # DELETE /photos/1.xml
-  def destroy
-    @photo = Photo.find(params[:id])
-    @photo.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(photos_url) }
-      format.xml { head :ok }
-    end
-  end
+    @pop_tags = Tag.limit(10)  
+  end  
 
   def upload
-
     uploaded_io = params[:photo]
     @photo = Photo.create(:album_id => current_user.album.id, :description => params[:description])
 
@@ -92,8 +37,6 @@ class PhotosController < ApplicationController
     end
 
     @photo.save
-
-
     redirect_to photo_path(@photo)
   end
 
@@ -102,7 +45,6 @@ class PhotosController < ApplicationController
     if @next_photo.nil?
       @next_photo = Photo.where(:album_id => params[:album_id]).limit(1).first
     end
-
     redirect_to photo_path(@next_photo)
   end
 
@@ -135,10 +77,7 @@ class PhotosController < ApplicationController
       end
     else
       current_user.favorite_photos << @photo
-      render :json => SUCCESS_JSON
-#      respond_to do |format|
-#        format.json {render :json => SUCCESS_JSON}
-#      end
+      render :json => SUCCESS_JSON  
     end
   end
 
@@ -159,6 +98,5 @@ class PhotosController < ApplicationController
   def latest
     @photos = Photo.order('created_at DESC').limit(100).paginate(:per_page => 20, :page => params[:page])
   end
-
 
 end
