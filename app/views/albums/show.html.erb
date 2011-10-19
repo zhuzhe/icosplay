@@ -17,7 +17,7 @@
             <li>
               <div>
                 <%= link_to photo do %>
-                    <%= image_tag photo.id2thumb_relative_path, :style => "width:100px;height:100px" %>
+                    <%= image_tag photo.id2thumb_relative_path %>
                 <% end %>
               </div>
             </li>
@@ -34,7 +34,7 @@
     <div class="visit_master">
       <div class="avatar">
         <%= link_to @album.user do %>
-            <%= image_tag @album.user.avatar.url %>
+            <%= image_tag @album.user.avatar.url, :style=> "width:100px;height:100px" %>
         <% end %>
       </div>
       <div class="username" style="text-align: middle">
