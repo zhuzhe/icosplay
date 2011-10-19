@@ -25,4 +25,8 @@ namespace :initDB do
   task :assign_tag_level => :environment do
     InitDB.new.assign_tag_level
   end
+
+  task :assign_user_birthday => :environment do
+    InitDB.new.assign_user_birthday
+  end
 end

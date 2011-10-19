@@ -13,19 +13,19 @@ class InitDB
       end
       puts "#{u.id}:#{u.avatar(true).id}"
     end
-  end    
-  
-  def assign_relations 
-    user_ids = Boy.all.collect{ |u| u.id }
-    Boy.find_each do |u|  
-        master_ids = []
-        0.upto(rand(10)) do |i|
-           master_id = user_ids[rand(user_ids.length)]
-           next if master_ids.include?(master_id)
-           master_ids << master_id  
-        end
-        u.master_ids = master_ids
-        u.save
+  end
+
+  def assign_relations
+    user_ids = Boy.all.collect { |u| u.id }
+    Boy.find_each do |u|
+      master_ids = []
+      0.upto(rand(10)) do |i|
+        master_id = user_ids[rand(user_ids.length)]
+        next if master_ids.include?(master_id)
+        master_ids << master_id
+      end
+      u.master_ids = master_ids
+      u.save
     end
   end
 
@@ -45,7 +45,7 @@ class InitDB
   def change_default_url
     Avatar.find_each do |avatar|
       if avatar.url.match("avatars/default.jpg")
-        avatar.uploaded =  false
+        avatar.uploaded = false
         avatar.url = Avatar::DEFAULT
       else
         avatar.uploaded= true
@@ -68,6 +68,17 @@ class InitDB
       tag.level = rand(6)
       tag.save
       puts tag.level
+    end
+  end
+
+  def assign_user_birthday
+    one = [8, 9]
+    two = (1..28).collect
+    tree = (1..12).collect
+    Boy.where(:birthday => nil).each_with_index do |u, index|
+      u.birthday = "19#{one[rand(one.length)]}#{rand(10)}/#{tree[rand(tree.length)]}/#{two[rand(two.length)]}"
+      u.save
+      puts u.birthday
     end
   end
 

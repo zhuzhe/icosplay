@@ -7,6 +7,6 @@ class CitiesController < ApplicationController
   def show
     @cities = City.all
     @city = City.find params[:id]
-    @users = @city.users
+    @users = User.where(:city_id => @city.id).paginate(:per_page => 20, :page => params[:page])
   end
 end

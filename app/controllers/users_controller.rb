@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-#  before_filter :require_login, :only => [:favorite, :unfavorite]
+  before_filter :require_login, :only => [:favorite, :unfavorite, :edit, :update]
 
   def index
     @users = User.all
@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def hot
-    @users = User.where("level >= ?", 5).paginate(:per_page => 25, :page => params[:page])
+    @users = User.order("rand()").paginate(:per_page => 20, :page => params[:page])
   end
 
   def search_tag

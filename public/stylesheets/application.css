@@ -53,6 +53,10 @@ body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset
     clear: both;
 }
 
+.footer span {
+    margin: 15px;
+}
+
 .main_content {
     margin: 0;
     padding: 0;
@@ -153,15 +157,21 @@ h2 {
 }
 
 #canvas .pages {
-    width: 400px;
+    width: 300px;
     float: left;
-    margin: 10px 40px 20px;
+    margin: 10px 10px 30px 10px;
+    padding-left: 155px;
 }
 
-#canvas .pages a {
+#canvas .pages .previous_page, #canvas .pages .next_page {
     border: 1px solid #DDDDDD;
-    font-size: 12px;
+    font-size: 28px;
     padding: 0.2em 0.5em;
+    width: 30px;
+    height: 35px;
+    display: block;
+    float: left;
+    margin-left: 20px;
 }
 
 #canvas .pages em {

@@ -10,7 +10,7 @@
 
         <div class="select_city">
           <div class="selected_city" id="selected_city">
-            <%= link_to @city.name, ApplicationHelper::JAVASCRIPT %>
+            <%= link_to @city.name.truncate(10), ApplicationHelper::JAVASCRIPT %>
           </div>
 
         </div>

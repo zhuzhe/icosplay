@@ -20,4 +20,8 @@
         </div>
       </li>
   <% end %>
+
+  <div class="pages">
+    <%= will_paginate users, :previous_label => '<', :next_label => '>', :page_links => false %>
+  </div>
 </ul>
