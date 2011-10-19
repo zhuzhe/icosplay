@@ -10,38 +10,16 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
-    @comments = Comment.where(:photo_id => @photo.id).order("created_at DESC")
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @photo }
-    end
+    @comments = Comment.where(:photo_id => @photo.id).order("created_at DESC") 
   end
 
   def new
     @photo = Photo.new
     @user = current_user
-    @pop_tags = Tag.limit(10)
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml { render :xml => @photo }
-    end
-  end
-
-  def edit
-    @photo = Photo.find(params[:id])
-  end
-
-  def create 
+    @pop_tags = Tag.limit(10)  
   end  
-  
-  def update 
-  end   
-  
-  def destroy
-  end
 
   def upload
-
     uploaded_io = params[:photo]
     @photo = Photo.create(:album_id => current_user.album.id, :description => params[:description])
 
@@ -59,8 +37,6 @@ class PhotosController < ApplicationController
     end
 
     @photo.save
-
-
     redirect_to photo_path(@photo)
   end
 
@@ -69,7 +45,6 @@ class PhotosController < ApplicationController
     if @next_photo.nil?
       @next_photo = Photo.where(:album_id => params[:album_id]).limit(1).first
     end
-
     redirect_to photo_path(@next_photo)
   end
 
@@ -123,6 +98,5 @@ class PhotosController < ApplicationController
   def latest
     @photos = Photo.order('created_at DESC').limit(100).paginate(:per_page => 20, :page => params[:page])
   end
-
 
 end
