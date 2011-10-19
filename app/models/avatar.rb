@@ -7,12 +7,16 @@ class Avatar < ActiveRecord::Base
   FEMALE = 1
   OTHER = 2
 
-  ROOT_DIR = Rails.root.join('public', 'images', 'avatar')
+  ROOT_DIR = Rails.root.join('public', 'images', 'avatars')
   RELATIVE_DIR = "avatars"
 
   SUFFIX = ".jpg"
 
   DEFAULT = "default_avatar.jpg"
+
+  def id2path
+    self.id2(ROOT_DIR) + SUFFIX
+  end
 
 
   def id2 root

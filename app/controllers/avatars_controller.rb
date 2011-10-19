@@ -6,7 +6,7 @@ class AvatarsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @avatars }
+      format.xml { render :xml => @avatars }
     end
   end
 
@@ -17,7 +17,7 @@ class AvatarsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @avatar }
+      format.xml { render :xml => @avatar }
     end
   end
 
@@ -28,45 +28,34 @@ class AvatarsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @avatar }
+      format.xml { render :xml => @avatar }
     end
   end
 
   # GET /avatars/1/edit
   def edit
-    @avatar = Avatar.find(params[:id])
+
   end
 
-  # POST /avatars
-  # POST /avatars.xml
   def create
-    @avatar = Avatar.new(params[:avatar])
 
-    respond_to do |format|
-      if @avatar.save
-        format.html { redirect_to(@avatar, :notice => 'Avatar was successfully created.') }
-        format.xml  { render :xml => @avatar, :status => :created, :location => @avatar }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @avatar.errors, :status => :unprocessable_entity }
-      end
-    end
   end
 
   # PUT /avatars/1
   # PUT /avatars/1.xml
   def update
-    @avatar = Avatar.find(params[:id])
+    @user = current_user
+    uploaded_io = params[:avatar]
+    @avatar = @user.avatar
 
-    respond_to do |format|
-      if @avatar.update_attributes(params[:avatar])
-        format.html { redirect_to(@avatar, :notice => 'Avatar was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @avatar.errors, :status => :unprocessable_entity }
-      end
+    File.open(@avatar.id2path, 'w') do |file|
+      file.write(uploaded_io.read)
     end
+
+    @avatar.url = @avatar.id2relative_path
+    @avatar.save
+
+    redirect_to user_path(@user)
   end
 
   # DELETE /avatars/1
@@ -77,7 +66,7 @@ class AvatarsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to(avatars_url) }
-      format.xml  { head :ok }
+      format.xml { head :ok }
     end
   end
 end

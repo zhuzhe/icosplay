@@ -1,33 +1,37 @@
 <div class="header">
-  <h1>
-    <%= link_to 'Icosplay', root_path %>
-  </h1>
+  <div class="header_inner">
+    <h1>
+      <%= link_to 'Icosplay', root_path %>
+    </h1>
 
-  <div class="nav">
-    <ul>
-      <li><%= link_to 'Cos美图', root_path %> </li>
-      <li><%= link_to 'Coser用户', current_user && current_user.city || City.first %></li>
-    </ul>
+    <div class="nav">
+      <ul>
+        <li><%= link_to 'Cos美图', root_path %> </li>
+        <li><%= link_to 'Coser用户', current_user && current_user.city || City.first %></li>
+      </ul>
+    </div>
+
+    <div class="person">
+      <ul>
+        <% unless login? %>
+            <li>
+              <%= link_to '请登陆', login_path %>
+            </li>
+            <li>
+              <%= link_to '注册', register_path %>
+            </li>
+        <% else %>
+            <% user = current_user %>
+            <li>
+              <%= link_to user.name, user %>
+            </li>
+            <li>
+              <%= link_to '退出', logout_path %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+
   </div>
 
-  <div class="person">
-    <ul>
-      <% unless login? %>
-          <li>
-            <%= link_to '请登陆', login_path %>
-          </li>
-          <li>
-            <%= link_to '注册', register_path %>
-          </li>
-      <% else %>
-          <% user = current_user %>
-          <li>
-            <%= link_to user.name, user %>
-          </li>
-          <li>
-            <%= link_to '退出', logout_path %>
-          </li>
-      <% end %>
-    </ul>
-  </div>
 </div>

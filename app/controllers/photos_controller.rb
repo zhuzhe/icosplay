@@ -78,7 +78,7 @@ class PhotosController < ApplicationController
     uploaded_io = params[:photo]
     @photo = Photo.create(:album_id => current_user.album.id, :description => params[:description])
 
-    f= File.open(@photo.id2path, 'w') do |file|
+    File.open(@photo.id2path, 'w') do |file|
       file.write(uploaded_io.read)
     end
 

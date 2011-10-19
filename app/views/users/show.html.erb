@@ -5,7 +5,11 @@
 <% end %>
 <div class="wrapper">
   <div class="main">
+
     <div class="user">
+      <% if login? && current_user == @user %>
+          <div style="width: 100%; float: left;font-size: 14px; margin: 0"><%= link_to "修改资料", edit_user_path(@user) %></div>
+      <% end %>
       <div class="avatar"><%= image_tag @user.avatar.url %></div>
       <div class="simple_info">
       </div>

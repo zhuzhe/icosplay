@@ -81,11 +81,10 @@
       <!--<%= link_to @photo.album.user.name, @photo.album.user %>-->
       <!--</div>-->
     </div>
-    标签:
-    <ul class="tags">
 
+    <ul class="tags">
       <% @photo.tags.each do |tag| %>
-          <li class="tag"><%= link_to tag.name, search_tag_photos_path(:tag_name => tag.name) %></li>
+          <li class="tag"><%= link_to "> #{tag.name}", search_tag_photos_path(:tag_name => tag.name) %></li>
       <% end %>
     </ul>
 
