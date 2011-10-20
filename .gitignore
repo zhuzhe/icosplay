@@ -3,6 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/
 .idea
-public/images/cos/origin
-public/images/cos/thumbs
+public/images/cos
+
 public/images/avatars
