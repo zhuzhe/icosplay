@@ -1,11 +1,10 @@
 class PhotosController < ApplicationController
 
   before_filter :require_login, :only => [:favorite, :new, :upload]
-  before_filter :get_pop_tags, :only => [:recommend, :latest, :index]
+  before_filter :get_pop_tags, :only => [:recommend, :latest, :index, :search_tag, :index]
 
   def index
-    @photos = Photo.limit(100).paginate(:per_page => 20, :page => params[:page])
-    @pop_tags = Tag.limit(20)
+    @photos = Photo.order("rand()").paginate(:per_page => 20, :page => params[:page])
   end
 
   def show
@@ -59,7 +58,6 @@ class PhotosController < ApplicationController
   def search_tag
     @tag_name = params[:tag_name]
     @photos = Photo.joins(:tags).where("tags.name like ?", "%#{params[:tag_name]}%").paginate(:page => params[:page], :per_page => 30)
-    @relative_tags = Tag.limit(10)
   end
 
   def by_tag
@@ -96,7 +94,7 @@ class PhotosController < ApplicationController
   end
 
   def latest
-    @photos = Photo.order('created_at DESC').limit(100).paginate(:per_page => 20, :page => params[:page])
+    @photos = Photo.order('created_at DESC').paginate(:per_page => 20, :page => params[:page])
   end
 
 end

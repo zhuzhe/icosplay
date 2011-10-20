@@ -1,5 +1,6 @@
+require "mini_magick"
+
 class Photo < ActiveRecord::Base
-  require "mini_magick"
 
   belongs_to :album
   has_and_belongs_to_many :tags
