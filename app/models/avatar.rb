@@ -1,4 +1,7 @@
+require "mini_magick"
+
 class Avatar < ActiveRecord::Base
+
   validates_presence_of :url
 
   belongs_to :user
@@ -33,4 +36,12 @@ class Avatar < ActiveRecord::Base
   def _relative_path root
     self.id.to_s.rjust(9, '0').scan(/\d{3}/).inject(root) { |path, f| "#{path}/#{f}" } + SUFFIX
   end
+
+  def resize
+    return unless File.exist?(self.id2path)
+    image = MiniMagick::Image.open(self.id2path)
+    image.resize "300x300"
+    image.write self.id2path
+  end
+
 end

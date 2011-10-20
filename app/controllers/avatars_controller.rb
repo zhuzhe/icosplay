@@ -1,5 +1,5 @@
-class AvatarsController < ApplicationController  
-    
+class AvatarsController < ApplicationController
+
   def update
     @user = current_user
     uploaded_io = params[:avatar]
@@ -11,8 +11,8 @@ class AvatarsController < ApplicationController
 
     @avatar.url = @avatar.id2relative_path
     @avatar.save
-
+    @avatar.resize
     redirect_to user_path(@user)
-  end  
-  
+  end
+
 end
