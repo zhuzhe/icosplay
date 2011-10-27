@@ -81,6 +81,15 @@ class InitDB
       puts u.birthday
     end
   end
-
+  
+  def fix_photo_no_album       
+      album_ids = Album.all.collect{ |album| album.id }
+    Photo.find_each do |photo|
+      next  unless photo.album.nil?
+      photo.album = Album.find(album_ids[rand(album_ids.length)])
+      photo.save
+      puts photo.album.id
+    end
+  end
 
 end

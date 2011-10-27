@@ -29,4 +29,8 @@ namespace :initDB do
   task :assign_user_birthday => :environment do
     InitDB.new.assign_user_birthday
   end
+  
+  task :fix_photo_no_album => :environment do
+      InitDB.new.fix_photo_no_album
+  end
 end
